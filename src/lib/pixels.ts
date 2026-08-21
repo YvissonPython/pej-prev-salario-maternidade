@@ -1,62 +1,13 @@
 import { supabase } from "@/integrations/supabase/client";
+import { CONSENT_KEY } from "@/components/CookieConsent";
 
 declare global {
   interface Window {
     dataLayer?: unknown[];
-    fbq?: ((...args: unknown[]) => void) & { queue?: unknown[]; loaded?: boolean; version?: string; callMethod?: (...a: unknown[]) => void; push?: unknown };
+    fbq?: ((...args: unknown[]) => void) & { queue?: unknown[]; loaded?: boolean; callMethod?: (...args: unknown[]) => void };
     _fbq?: unknown;
     gtag?: (...args: unknown[]) => void;
   }
-}
-
-const injected = new Set<string>();
-
-function addScript(id: string, src: string) {
-  if (injected.has(id) || document.getElementById(id)) return;
-  injected.add(id);
-  const s = document.createElement("script");
-  s.id = id;
-  s.async = true;
-  s.src = src;
-  document.head.appendChild(s);
-}
-
-function initGtag(id: string) {
-  addScript(`gtag-${id}`, `https://www.googletagmanager.com/gtag/js?id=${id}`);
-  window.dataLayer = window.dataLayer || [];
-  const gtag = (...args: unknown[]) => {
-    window.dataLayer!.push(args);
-  };
-  window.gtag = window.gtag || gtag;
-  window.gtag("js", new Date());
-  window.gtag("config", id);
-}
-
-function initGtm(id: string) {
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
-  addScript(`gtm-${id}`, `https://www.googletagmanager.com/gtm.js?id=${id}`);
-}
-
-function initMetaPixel(id: string) {
-  if (injected.has(`fb-${id}`)) return;
-  injected.add(`fb-${id}`);
-  const queue: unknown[] = [];
-  const fbq = ((...args: unknown[]) => {
-    queue.push(args);
-  }) as NonNullable<Window["fbq"]>;
-  fbq.queue = queue;
-  window.fbq = window.fbq || fbq;
-  addScript(`fb-script-${id}`, "https://connect.facebook.net/en_US/fbevents.js");
-  const check = window.setInterval(() => {
-    const realFbq = window.fbq;
-    if (realFbq && (realFbq as { loaded?: boolean }).loaded) {
-      window.clearInterval(check);
-      realFbq("init", id);
-      realFbq("track", "PageView");
-    }
-  }, 200);
-  window.setTimeout(() => window.clearInterval(check), 10000);
 }
 
 export type TrackingSettings = {
@@ -68,36 +19,99 @@ export type TrackingSettings = {
 };
 
 let cached: TrackingSettings | null = null;
+let initialized = false;
+const fired = new Set<string>();
+
+const metricsAllowed = () => localStorage.getItem(CONSENT_KEY) === "metrics";
+
+function addScript(id: string, src: string) {
+  if (document.getElementById(id)) return;
+  const script = document.createElement("script");
+  script.id = id;
+  script.async = true;
+  script.src = src;
+  document.head.appendChild(script);
+}
+
+function initGtag(id: string) {
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || ((...args: unknown[]) => window.dataLayer!.push(args));
+  window.gtag("js", new Date());
+  window.gtag("config", id, { anonymize_ip: true });
+  addScript(`gtag-${id}`, `https://www.googletagmanager.com/gtag/js?id=${id}`);
+}
+
+function initGtm(id: string) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+  addScript(`gtm-${id}`, `https://www.googletagmanager.com/gtm.js?id=${id}`);
+}
+
+function initMetaPixel(id: string) {
+  if (window.fbq?.loaded) return;
+  const fbq = function (...args: unknown[]) {
+    if (fbq.callMethod) fbq.callMethod(...args);
+    else fbq.queue!.push(args);
+  } as NonNullable<Window["fbq"]>;
+  fbq.queue = [];
+  fbq.loaded = true;
+  window.fbq = fbq;
+  window._fbq = fbq;
+  addScript("meta-pixel", "https://connect.facebook.net/en_US/fbevents.js");
+  fbq("init", id);
+  fbq("track", "PageView");
+}
+
+async function fetchSettings() {
+  if (cached) return cached;
+  const { data } = await supabase
+    .from("tracking_settings")
+    .select("ga_measurement_id, google_ads_conversion_id, google_ads_conversion_label, meta_pixel_id, gtm_container_id")
+    .eq("id", "default")
+    .maybeSingle();
+  cached = (data as TrackingSettings | null) ?? null;
+  return cached;
+}
 
 export async function loadPixels(): Promise<TrackingSettings | null> {
   try {
-    const { data } = await supabase
-      .from("tracking_settings")
-      .select("ga_measurement_id, google_ads_conversion_id, google_ads_conversion_label, meta_pixel_id, gtm_container_id")
-      .eq("id", "default")
-      .maybeSingle();
-    if (!data) return null;
-    cached = data as TrackingSettings;
-    if (data.gtm_container_id) initGtm(data.gtm_container_id);
-    if (data.ga_measurement_id) initGtag(data.ga_measurement_id);
-    if (data.google_ads_conversion_id) initGtag(data.google_ads_conversion_id);
-    if (data.meta_pixel_id) initMetaPixel(data.meta_pixel_id);
-    return cached;
+    const settings = await fetchSettings();
+    if (!settings || !metricsAllowed() || initialized) return settings;
+    initialized = true;
+    if (settings.gtm_container_id) initGtm(settings.gtm_container_id);
+    if (settings.ga_measurement_id) initGtag(settings.ga_measurement_id);
+    if (settings.google_ads_conversion_id) initGtag(settings.google_ads_conversion_id);
+    if (settings.meta_pixel_id) initMetaPixel(settings.meta_pixel_id);
+    return settings;
   } catch {
     return null;
   }
 }
 
-export function fireConversion(eventName: string) {
+export function listenForConsent() {
+  const handler = (event: Event) => {
+    const choice = (event as CustomEvent<string>).detail;
+    if (choice === "metrics") void loadPixels();
+  };
+  window.addEventListener("pj:consent-changed", handler);
+  return () => window.removeEventListener("pj:consent-changed", handler);
+}
+
+export function fireConversion(eventName: "CTAStart" | "Lead" | "Contact") {
+  if (!metricsAllowed()) return;
+  const key = `${eventName}:${location.pathname}`;
+  if (fired.has(key)) return;
+  fired.add(key);
   try {
-    if (cached?.google_ads_conversion_id && cached.google_ads_conversion_label && window.gtag) {
-      window.gtag("event", "conversion", {
-        send_to: `${cached.google_ads_conversion_id}/${cached.google_ads_conversion_label}`,
-      });
+    if (eventName === "Lead" && cached?.google_ads_conversion_id && cached.google_ads_conversion_label && window.gtag) {
+      window.gtag("event", "conversion", { send_to: `${cached.google_ads_conversion_id}/${cached.google_ads_conversion_label}` });
     }
-    if (window.gtag) window.gtag("event", eventName);
-    if (window.fbq) window.fbq("track", "Lead", { content_name: eventName });
+    window.gtag?.("event", eventName);
+    if (window.fbq) {
+      if (eventName === "CTAStart") window.fbq("trackCustom", "CTAStart");
+      else window.fbq("track", eventName);
+    }
   } catch {
-    /* noop */
+    // Métricas não podem interromper a experiência.
   }
 }
