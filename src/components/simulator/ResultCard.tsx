@@ -13,8 +13,8 @@ import {
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { useToast } from "@/hooks/use-toast";
-import heroImg from "@/assets/hero-result.jpg";
-import logo from "@/assets/logo-pjprev.jpg";
+const heroImg = "https://pejprevsalariomaternidade.lovable.app/assets/gestante-feliz-CSZJsqke.jpg";
+const logo = "https://pejprevsalariomaternidade.lovable.app/assets/logo-pjprev-circular-0AoflDRs.jpg";
 
 interface ResultCardProps {
   answers: Record<string, string>;
