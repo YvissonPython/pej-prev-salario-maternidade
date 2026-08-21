@@ -5,15 +5,16 @@ import {
   MessageCircle, HelpCircle, Star, Users, Award,
   Instagram, ExternalLink, Building2
 } from "lucide-react";
-import logo from "@/assets/logo-pjprev-circular.jpg";
-import gestanteFeliz from "@/assets/gestante-feliz.jpg";
-import maeBebeFeliz from "@/assets/mae-bebe-feliz.jpg";
-import rostoEmpresa from "@/assets/pjprev-rosto-empresa.webp";
-import equipeAtendimento from "@/assets/equipe-atendimento-pjprev.webp";
-import equipe from "@/assets/equipe-pjprev.webp";
+const logo = "https://pejprevsalariomaternidade.lovable.app/assets/logo-pjprev-circular-0AoflDRs.jpg";
+const gestanteFeliz = "https://pejprevsalariomaternidade.lovable.app/assets/gestante-feliz-CSZJsqke.jpg";
+const maeBebeFeliz = "https://pejprevsalariomaternidade.lovable.app/assets/mae-bebe-feliz-BX0n3RzG.jpg";
+const rostoEmpresa = "https://pejprevsalariomaternidade.lovable.app/assets/pjprev-rosto-empresa-DLn8D0Gf.webp";
+const equipeAtendimento = "https://pejprevsalariomaternidade.lovable.app/assets/equipe-atendimento-pjprev-BLtpDovc.webp";
+const equipe = "https://pejprevsalariomaternidade.lovable.app/assets/equipe-pjprev-NPaiShRP.webp";
 import StartFlowDialog from "@/components/StartFlowDialog";
 import { trackEvent } from "@/lib/tracking";
-import { loadPixels, fireConversion } from "@/lib/pixels";
+import { loadPixels, fireConversion, listenForConsent } from "@/lib/pixels";
+import { Link } from "react-router-dom";
 
 /* ─── scroll-reveal hook ─── */
 const useScrollReveal = () => {
@@ -72,7 +73,7 @@ const Index = () => {
     setFlowSource(source);
     setFlowOpen(true);
     trackEvent("cta_comece_aqui", { source });
-    fireConversion("comece_por_aqui");
+    fireConversion("CTAStart");
     setMobileMenu(false);
   };
 
@@ -91,7 +92,8 @@ const Index = () => {
   /* rastreamento e pixels */
   useEffect(() => {
     trackEvent("page_view");
-    loadPixels();
+    void loadPixels();
+    return listenForConsent();
   }, []);
 
 
@@ -225,13 +227,13 @@ const Index = () => {
             <div className="animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
               <div className="relative">
                 <div className="pointer-events-none absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/20 via-accent/10 to-transparent blur-2xl" />
-                <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-card-hover transition-transform duration-500 hover:-rotate-1 hover:scale-[1.02]">
+                <div className="group relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-card-hover transition-all duration-500 ease-out hover:-translate-y-1">
                   <img
                     src={rostoEmpresa}
                     alt="Profissional da P&J Prev sorrindo durante atendimento"
                     width={768}
                     height={954}
-                    className="h-[390px] w-full object-cover object-[center_28%] sm:h-[500px]"
+                    className="h-[390px] w-full object-cover object-[center_42%] transition-transform duration-500 ease-out group-hover:scale-[1.025] sm:h-[500px]"
                   />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-card via-card/70 to-transparent" />
                   <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-border bg-card/90 p-4 backdrop-blur-md">
@@ -339,7 +341,7 @@ const Index = () => {
                   loading="lazy"
                   width={768}
                   height={1024}
-                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-[center_30%] transition-transform duration-500 group-hover:scale-105"
+                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-[center_30%] transition-transform duration-500 group-hover:scale-[1.025]"
                 />
               </div>
               <div className="flex-1 bg-card p-5 sm:p-6">
@@ -355,7 +357,7 @@ const Index = () => {
                   loading="lazy"
                   width={768}
                   height={1024}
-                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-[center_30%] transition-transform duration-500 group-hover:scale-105"
+                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-[center_30%] transition-transform duration-500 group-hover:scale-[1.025]"
                 />
               </div>
               <div className="flex-1 bg-card p-5 sm:p-6">
@@ -412,7 +414,7 @@ const Index = () => {
               { src: equipe, alt: "Time completo da P&J Prev", label: "Quem cuida dos seus direitos", position: "object-center" },
             ].map((item, index) => (
               <a key={item.label} href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_clicked", { source: `instagram_card_${index + 1}` })} className="group relative aspect-square overflow-hidden rounded-2xl bg-muted shadow-card focus-visible:ring-2 focus-visible:ring-ring">
-                <img src={item.src} alt={item.alt} loading="lazy" width={640} height={640} className={`h-full w-full object-cover ${item.position} transition-transform duration-500 group-hover:scale-105`} />
+                <img src={item.src} alt={item.alt} loading="lazy" width={640} height={640} className={`h-full w-full object-cover ${item.position} transition-transform duration-500 group-hover:scale-[1.025]`} />
                 <span className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-foreground/90 to-transparent p-5 pt-16 text-primary-foreground">
                   <span className="font-medium">{item.label}</span><Instagram className="h-5 w-5 transition-transform group-hover:scale-110" />
                 </span>
@@ -625,6 +627,11 @@ const Index = () => {
             </div>
           </div>
           <div className="mt-10 border-t border-border pt-6 text-center text-xs text-muted-foreground">
+            <div className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
+              <Link to="/politica-de-privacidade" className="hover:text-primary hover:underline">Política de Privacidade</Link>
+              <Link to="/termos-de-uso" className="hover:text-primary hover:underline">Termos de Uso</Link>
+              <button onClick={() => window.dispatchEvent(new Event("pj:cookie-preferences"))} className="hover:text-primary hover:underline">Preferências de cookies</button>
+            </div>
             © {new Date().getFullYear()} P&J Prev. Todos os direitos reservados.
           </div>
         </div>
