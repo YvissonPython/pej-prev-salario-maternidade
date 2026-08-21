@@ -474,7 +474,7 @@ const Index = () => {
               href={formUrl}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => { trackEvent("form_opened", { source: "secao_formulario" }); fireConversion("form_opened"); }}
+              onClick={() => { trackEvent("form_opened", { source: "secao_formulario" }); fireConversion("Lead"); }}
               className="group relative flex flex-col items-start gap-5 rounded-3xl border-2 border-primary bg-card p-7 shadow-card-hover transition-all hover:-translate-y-1 sm:flex-row sm:items-center sm:justify-between sm:p-8"
             >
               <div className="flex items-start gap-4">
@@ -497,6 +497,10 @@ const Index = () => {
               </span>
             </a>
           </div>
+
+          <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
+            Ao continuar, você declara estar ciente da <Link to="/politica-de-privacidade" className="text-primary hover:underline">Política de Privacidade</Link> e dos <Link to="/termos-de-uso" className="text-primary hover:underline">Termos de Uso</Link>.
+          </p>
 
           {/* CTA secundário — cliente existente */}
           <div className="mt-6 flex flex-col items-center gap-2 rounded-2xl border border-dashed border-border bg-secondary/40 p-5 text-center sm:flex-row sm:justify-between sm:text-left">
