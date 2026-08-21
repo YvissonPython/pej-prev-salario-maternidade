@@ -1,4 +1,4 @@
-import logo from "@/assets/logo-pjprev.jpg";
+const logo = "https://pejprevsalariomaternidade.lovable.app/assets/logo-pjprev-circular-0AoflDRs.jpg";
 
 const SimulatorHeader = () => {
   return (
