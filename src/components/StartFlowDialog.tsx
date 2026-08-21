@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowLeft, ChevronRight, MessageCircle, Sparkles, UserCheck } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { trackEvent } from "@/lib/tracking";
+import { fireConversion } from "@/lib/pixels";
 
 const FORM_URL = "https://form.respondi.app/Dg1sDMTh";
 const WHATSAPP_NUMBER = "5581994271461";
@@ -30,6 +31,7 @@ const StartFlowDialog = ({ open, onOpenChange, source = "desconhecido" }: StartF
   const handleNovaCliente = () => {
     trackEvent("select_nova_cliente", { source });
     trackEvent("form_opened", { source });
+    fireConversion("Lead");
     window.open(FORM_URL, "_blank", "noopener,noreferrer");
     onOpenChange(false);
   };
@@ -48,6 +50,7 @@ const StartFlowDialog = ({ open, onOpenChange, source = "desconhecido" }: StartF
     }
     setErro(null);
     trackEvent("whatsapp_clicked", { source, tipo: "cliente_existente" });
+    fireConversion("Contact");
     const mensagem = `Olá! Meu nome é ${nomeLimpo}. Vim através do site e já sou cliente da P&J Prev.`;
     const link = document.createElement("a");
     link.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`;
