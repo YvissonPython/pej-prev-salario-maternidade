@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   BarChart3, LogOut, Loader2, RefreshCw, Settings, ShieldAlert,
-  MousePointerClick, MessageCircle, FileText, Users,
+  MousePointerClick, MessageCircle, FileText, Users, CheckCircle2, AlertTriangle,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import logo from "@/assets/logo-pjprev-circular.jpg";
+const logo = "https://pejprevsalariomaternidade.lovable.app/assets/logo-pjprev-circular-0AoflDRs.jpg";
 import type { Session } from "@supabase/supabase-js";
 
 type EventRow = {
@@ -326,6 +326,33 @@ const Dashboard = ({ session }: { session: Session }) => {
                 Informe os identificadores para ativar o rastreamento no site. Deixe em branco para desativar.
               </p>
             </div>
+
+            <section className="rounded-2xl border border-primary/15 bg-primary/5 p-5">
+              <h3 className="font-serif font-semibold text-foreground">Status da captação</h3>
+              <div className="mt-4 space-y-3 text-sm">
+                <p className="flex items-center gap-2 text-foreground"><CheckCircle2 className="h-4 w-4 text-primary" /> Eventos do site: ativos.</p>
+                <p className="flex items-center gap-2 text-foreground"><CheckCircle2 className="h-4 w-4 text-primary" /> Formulário: Respondi (externo).</p>
+                <p className="flex items-start gap-2 text-foreground"><AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" /> Sincronização de leads com CRM: não configurada neste projeto.</p>
+              </div>
+              <p className="mt-4 rounded-xl bg-card p-3 text-xs leading-relaxed text-muted-foreground">Recomendação: configurar um webhook do Respondi para o CRM de destino e realizar um envio controlado para confirmar o recebimento automático.</p>
+            </section>
+
+            <section className="rounded-2xl border border-border p-5">
+              <h3 className="font-serif font-semibold text-foreground">Integrações</h3>
+              <div className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                {[
+                  ["Google Analytics", settings.ga_measurement_id],
+                  ["Google Tag Manager", settings.gtm_container_id],
+                  ["Google Ads", settings.google_ads_conversion_id && settings.google_ads_conversion_label],
+                  ["Meta Pixel", settings.meta_pixel_id],
+                ].map(([name, value]) => (
+                  <div key={name} className="flex items-center justify-between gap-3 rounded-xl bg-secondary/50 px-3 py-2.5">
+                    <span className="text-foreground">{name}</span>
+                    <span className={value ? "font-medium text-primary" : "font-medium text-amber-700"}>{value ? "Configurado" : "Não configurado"}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
             {([
               ["ga_measurement_id", "Google Analytics 4 (G-XXXXXXX)"],
               ["gtm_container_id", "Google Tag Manager (GTM-XXXXXX)"],
