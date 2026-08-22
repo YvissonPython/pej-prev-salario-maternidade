@@ -74,9 +74,10 @@ async function fetchSettings() {
 }
 
 export async function loadPixels(): Promise<TrackingSettings | null> {
+  if (!metricsAllowed()) return null;
   try {
     const settings = await fetchSettings();
-    if (!settings || !metricsAllowed() || initialized) return settings;
+    if (!settings || initialized) return settings;
     initialized = true;
     if (settings.gtm_container_id) initGtm(settings.gtm_container_id);
     if (settings.ga_measurement_id) initGtag(settings.ga_measurement_id);

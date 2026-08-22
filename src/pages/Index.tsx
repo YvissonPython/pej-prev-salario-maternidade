@@ -97,16 +97,19 @@ const Index = () => {
 
 
 
-  /* Respondi embed script */
+  /* Carrega o formulário externo após o conteúdo principal, sem bloquear a página. */
   useEffect(() => {
-    if (!document.querySelector("#respondi_src")) {
-      const s = document.createElement("script");
-      s.setAttribute("async", "");
-      s.id = "respondi_src";
-      s.src = "https://embed.respondi.app/embed.js";
-      document.body.appendChild(s);
-    }
-    return () => { document.querySelector("#respondi_src")?.remove(); };
+    if (document.querySelector("#respondi_src")) return;
+    const loadEmbed = () => {
+      if (document.querySelector("#respondi_src")) return;
+      const script = document.createElement("script");
+      script.async = true;
+      script.id = "respondi_src";
+      script.src = "https://embed.respondi.app/embed.js";
+      document.body.appendChild(script);
+    };
+    const timer = window.setTimeout(loadEmbed, 450);
+    return () => window.clearTimeout(timer);
   }, []);
 
   const navLinks = [
@@ -231,6 +234,8 @@ const Index = () => {
                     alt="Profissional da P&J Prev sorrindo durante atendimento"
                     width={768}
                     height={954}
+                    decoding="async"
+                    fetchPriority="high"
                     className="h-[390px] w-full object-cover object-[center_42%] transition-transform duration-500 ease-out group-hover:scale-[1.025] sm:h-[500px]"
                   />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-card via-card/70 to-transparent" />
@@ -337,6 +342,7 @@ const Index = () => {
                   src={gestanteFeliz}
                   alt="Gestante feliz segurando sapatinhos de bebê"
                   loading="lazy"
+                  decoding="async"
                   width={768}
                   height={1024}
                   className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-[center_30%] transition-transform duration-500 group-hover:scale-[1.025]"
@@ -353,6 +359,7 @@ const Index = () => {
                   src={maeBebeFeliz}
                   alt="Mãe feliz segurando seu bebê recém-nascido"
                   loading="lazy"
+                  decoding="async"
                   width={768}
                   height={1024}
                   className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-[center_30%] transition-transform duration-500 group-hover:scale-[1.025]"
