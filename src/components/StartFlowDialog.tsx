@@ -4,7 +4,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { trackEvent } from "@/lib/tracking";
 import { fireConversion } from "@/lib/pixels";
 
-const FORM_URL = "https://form.respondi.app/Dg1sDMTh";
 const WHATSAPP_NUMBER = "5581994271461";
 
 type Step = "choice" | "cliente";
@@ -32,8 +31,10 @@ const StartFlowDialog = ({ open, onOpenChange, source = "desconhecido" }: StartF
     trackEvent("select_nova_cliente", { source });
     trackEvent("form_opened", { source });
     fireConversion("Lead");
-    window.open(FORM_URL, "_blank", "noopener,noreferrer");
     onOpenChange(false);
+    window.setTimeout(() => {
+      document.getElementById("formulario-respondi")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 200);
   };
 
   const handleJaCliente = () => {

@@ -77,8 +77,6 @@ const Index = () => {
     setMobileMenu(false);
   };
 
-  const formUrl = "https://form.respondi.app/Dg1sDMTh";
-
   /* garante abertura no topo (hero) e não no meio da página */
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
@@ -467,35 +465,21 @@ const Index = () => {
             <p className="mt-3 text-muted-foreground">Escolha a opção que combina com você para agilizar seu atendimento.</p>
           </div>
 
-          {/* CTA principal — nova cliente (destaque máximo) */}
-          <div className="mt-10 relative">
-            <div className="pointer-events-none absolute -inset-2 rounded-3xl bg-gradient-to-r from-primary/25 via-accent/20 to-primary/25 blur-xl opacity-70 animate-pulse-soft" />
-            <a
-              href={formUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => { trackEvent("form_opened", { source: "secao_formulario" }); fireConversion("Lead"); }}
-              className="group relative flex flex-col items-start gap-5 rounded-3xl border-2 border-primary bg-card p-7 shadow-card-hover transition-all hover:-translate-y-1 sm:flex-row sm:items-center sm:justify-between sm:p-8"
-            >
-              <div className="flex items-start gap-4">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-hero text-primary-foreground shadow-button">
-                  <Heart className="h-6 w-6" />
-                </span>
-                <div>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
-                    Recomendado
-                  </span>
-                  <h3 className="mt-1.5 font-serif text-xl font-semibold text-foreground sm:text-2xl">Ainda não sou cliente</h3>
-                  <p className="mt-1 text-sm text-muted-foreground sm:max-w-md">
-                    Faça sua análise gratuita e descubra em minutos se você tem direito ao Salário Maternidade.
-                  </p>
-                </div>
-              </div>
-              <span className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-gradient-hero px-6 py-3.5 text-base font-semibold text-primary-foreground shadow-button transition-all group-hover:shadow-card-hover">
-                Iniciar análise gratuita
-                <ChevronRight className="h-4 w-4" />
-              </span>
-            </a>
+          {/* Formulário Respondi incorporado */}
+          <div
+            id="formulario-respondi"
+            className="relative mt-10 overflow-hidden rounded-3xl border border-primary/20 bg-card p-2 shadow-card-hover sm:p-4"
+            onPointerDown={() => { trackEvent("form_interaction", { source: "secao_formulario" }); fireConversion("Lead"); }}
+          >
+            <div className="pointer-events-none absolute inset-x-8 top-0 h-20 rounded-full bg-primary/10 blur-3xl" />
+            <div
+              data-respondi-container=""
+              data-respondi-mode="regular"
+              data-respondi-src="https://form.respondi.app/aymmBnHN"
+              data-respondi-width="100%"
+              data-respondi-height="600px"
+              className="relative min-h-[600px] w-full overflow-hidden rounded-2xl"
+            />
           </div>
 
           <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
