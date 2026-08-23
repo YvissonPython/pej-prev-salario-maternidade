@@ -5,8 +5,8 @@
 @layer base {
   :root {
     /* ═══ P&J Prev — azul institucional derivado da logo ═══ */
-    --background: 210 33% 99%;
-    --foreground: 212 40% 16%;
+    --background: 210 24% 98%;
+    --foreground: 210 42% 14%;
 
     --card: 0 0% 100%;
     --card-foreground: 212 40% 16%;
@@ -15,14 +15,14 @@
     --popover-foreground: 212 40% 16%;
 
     /* azul profundo da logo */
-    --primary: 210 60% 24%;
+    --primary: 208 62% 20%;
     --primary-foreground: 0 0% 100%;
 
     /* azul médio complementar */
-    --accent: 206 55% 42%;
+    --accent: 205 42% 38%;
     --accent-foreground: 0 0% 100%;
 
-    --secondary: 208 40% 96%;
+    --secondary: 207 27% 94%;
     --secondary-foreground: 212 40% 16%;
 
     --muted: 208 25% 94%;
@@ -31,11 +31,11 @@
     --destructive: 0 72% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 209 26% 89%;
-    --input: 209 26% 89%;
+    --border: 208 20% 86%;
+    --input: 208 20% 86%;
     --ring: 206 55% 42%;
 
-    --radius: 0.75rem;
+    --radius: 0.625rem;
 
     --shadow-card: 0 1px 2px 0 hsl(210 40% 20% / 0.05), 0 1px 3px 0 hsl(210 40% 20% / 0.05);
     --shadow-card-hover: 0 18px 44px -24px hsl(210 50% 16% / 0.24), 0 8px 20px -16px hsl(210 40% 20% / 0.12);
@@ -68,7 +68,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manrope', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -80,7 +80,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Source Serif 4', serif;
   }
 
   :focus-visible {

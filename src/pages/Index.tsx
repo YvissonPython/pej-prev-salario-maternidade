@@ -124,20 +124,24 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* ═══════ NAVBAR ═══════ */}
-      <nav className="sticky top-0 z-50 border-b border-border bg-card/90 backdrop-blur-lg">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
+      <nav className="sticky top-0 z-50 border-b border-border/70 bg-card/95 backdrop-blur-xl">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
           <button
             onClick={() => scrollTo("inicio")}
             aria-label="Ir para o início"
-            className="flex items-center gap-3 rounded-xl p-1 transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex items-center gap-3 rounded-lg transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <img
               src={logo}
               alt="P&J Prev"
               width={112}
               height={112}
-              className="h-11 w-11 rounded-full object-cover shadow-card sm:h-14 sm:w-14"
+              className="h-11 w-11 rounded-full object-cover ring-1 ring-border sm:h-12 sm:w-12"
             />
+            <span className="text-left">
+              <strong className="block font-serif text-base font-semibold leading-none text-foreground">P&amp;J Prev</strong>
+              <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">Atendimento previdenciário</span>
+            </span>
           </button>
 
           {/* desktop links */}
@@ -149,8 +153,8 @@ const Index = () => {
               </button>
             ))}
             <button onClick={() => openFlow("navbar")}
-              className="inline-flex min-h-[44px] items-center rounded-xl bg-gradient-hero px-5 text-sm font-semibold text-primary-foreground shadow-button transition-all hover:scale-[1.02] hover:shadow-card-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-              Comece por aqui
+              className="inline-flex min-h-[44px] items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-button transition-colors hover:bg-primary/92 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+              Iniciar análise
             </button>
           </div>
 
@@ -186,38 +190,33 @@ const Index = () => {
       </nav>
 
       {/* ═══════ HERO ═══════ */}
-      <section id="inicio" className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-accent/5" />
-        {/* decorative blobs */}
-        <div className="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-accent/5 blur-3xl" />
-
-        <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6 pb-16 pt-12 md:py-20 lg:py-24" ref={heroRef}>
-          <div className="grid items-center gap-10 md:grid-cols-2 lg:gap-14">
+      <section id="inicio" className="relative overflow-hidden border-b border-border/70 bg-[#f3f6f8]">
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] bg-primary lg:block" />
+        <div className="relative mx-auto w-full max-w-7xl px-4 pb-16 pt-12 sm:px-6 md:py-20 lg:px-8 lg:py-24" ref={heroRef}>
+          <div className="grid items-center gap-12 md:grid-cols-[0.94fr_1.06fr] lg:gap-20">
             <div className="animate-fade-in-up">
-              <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3.5 py-1 text-xs font-medium text-primary">
-                <Heart className="h-3 w-3" /> Cuidando de quem cuida
+              <span className="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
+                <span className="h-px w-8 bg-primary" /> Orientação especializada
               </span>
-              <h1 className="font-serif text-[1.75rem] font-bold leading-[1.15] text-balance text-foreground sm:text-4xl lg:text-5xl">
-                Você pode ter direito ao{" "}
-                <span className="text-primary">Salário Maternidade</span>
+              <h1 className="max-w-2xl font-serif text-[2.25rem] font-semibold leading-[1.06] tracking-[-0.025em] text-balance text-foreground sm:text-5xl lg:text-[3.7rem]">
+                Entenda seu direito ao <span className="text-primary">salário-maternidade.</span>
               </h1>
-              <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-                Mesmo desempregada, MEI ou contribuinte individual — descubra em poucos minutos se você pode receber esse benefício. Nossa equipe cuida de tudo por você.
+              <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
+                Uma análise inicial clara e gratuita para gestantes, mães, MEIs, autônomas e seguradas do INSS — com atendimento humano em todo o Brasil.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <button onClick={() => openFlow("hero")}
-                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-gradient-hero px-8 py-4 text-base font-semibold text-primary-foreground shadow-button transition-all duration-200 hover:scale-[1.02] hover:shadow-card-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                  Comece por aqui
+                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-button transition-colors hover:bg-primary/92 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                  Fazer análise gratuita
                   <ChevronRight className="h-4 w-4" />
                 </button>
                 <button onClick={() => scrollTo("como-funciona")}
-                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border-2 border-border bg-card px-6 py-3.5 text-base font-medium text-foreground transition-all hover:border-primary/40 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-6 py-3.5 text-base font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                   Como funciona
                   <ChevronRight className="h-4 w-4" />
                 </button>
               </div>
-              <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+              <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-5 text-sm text-muted-foreground">
                 <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Análise gratuita</span>
                 <span className="flex items-center gap-1.5"><Clock className="h-4 w-4 text-primary" /> Resultado em minutos</span>
                 <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4 text-primary" /> Todo o Brasil</span>
@@ -227,8 +226,8 @@ const Index = () => {
             {/* hero image */}
             <div className="animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
               <div className="relative">
-                <div className="pointer-events-none absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/20 via-accent/10 to-transparent blur-2xl" />
-                <div className="group relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-card-hover transition-all duration-500 ease-out hover:-translate-y-1">
+                <div className="pointer-events-none absolute -inset-5 translate-x-5 translate-y-5 border border-white/20 lg:bg-primary" />
+                <div className="group relative overflow-hidden rounded-[1.25rem] border border-white/30 bg-card shadow-card-hover">
                   <img
                     src={rostoEmpresa}
                     alt="Profissional da P&J Prev sorrindo durante atendimento"
@@ -236,10 +235,10 @@ const Index = () => {
                     height={954}
                     decoding="async"
                     fetchPriority="high"
-                    className="h-[390px] w-full object-cover object-[center_42%] transition-transform duration-500 ease-out group-hover:scale-[1.025] sm:h-[500px]"
+                    className="h-[430px] w-full object-cover object-[center_38%] sm:h-[560px]"
                   />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-card via-card/70 to-transparent" />
-                  <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-border bg-card/90 p-4 backdrop-blur-md">
+                  <div className="absolute inset-x-5 bottom-5 rounded-xl border border-white/30 bg-card/94 p-4 backdrop-blur-md">
                     <div className="flex items-center gap-3">
                       <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/15 text-primary">
                         <Check className="h-4 w-4" />
@@ -251,9 +250,6 @@ const Index = () => {
                     </div>
                   </div>
                 </div>
-                <div className="pointer-events-none absolute -right-3 -top-3 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg animate-float">
-                  <Baby className="h-7 w-7" />
-                </div>
               </div>
             </div>
           </div>
@@ -261,8 +257,8 @@ const Index = () => {
       </section>
 
       {/* ═══════ QUEM TEM DIREITO ═══════ */}
-      <section id="quem-tem-direito" className="py-16 sm:py-20 lg:py-24" ref={whoRef}>
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+      <section id="quem-tem-direito" className="py-20 sm:py-24 lg:py-28" ref={whoRef}>
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <span className="mb-3 inline-block text-sm font-medium text-primary">Quem pode receber?</span>
             <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">
@@ -271,7 +267,7 @@ const Index = () => {
             <p className="mt-3 text-muted-foreground">Muitas mulheres não sabem que têm direito. Veja se você se identifica:</p>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
             {[
               { icon: FileText, title: "Carteira assinada", desc: "Trabalhou de carteira assinada antes de engravidar ou durante a gestação" },
               { icon: Search, title: "Desempregada", desc: "Ficou desempregada durante a gestação e ainda contribuiu recentemente" },
@@ -281,8 +277,8 @@ const Index = () => {
               { icon: Award, title: "Segurada especial", desc: "Trabalhadora rural ou pescadora artesanal" },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title}
-                className="group rounded-2xl border border-border bg-card p-6 shadow-card focus-within:ring-2 focus-within:ring-ring transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-primary/20">
-                <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                className="group bg-card p-7 transition-colors duration-300 hover:bg-secondary/65 sm:p-8">
+                <span className="mb-5 flex h-10 w-10 items-center justify-center rounded-full border border-primary/20 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                   <Icon className="h-5 w-5" />
                 </span>
                 <h3 className="font-serif text-lg font-semibold text-foreground">{title}</h3>
@@ -294,30 +290,30 @@ const Index = () => {
       </section>
 
       {/* ═══════ COMO FUNCIONA ═══════ */}
-      <section id="como-funciona" className="bg-secondary/50 py-16 sm:py-20 lg:py-24" ref={howRef}>
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+      <section id="como-funciona" className="bg-primary py-20 text-primary-foreground sm:py-24 lg:py-28" ref={howRef}>
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <span className="mb-3 inline-block text-sm font-medium text-primary">Passo a passo</span>
-            <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">
+            <span className="mb-3 inline-block text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground/65">Passo a passo</span>
+            <h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-primary-foreground sm:text-4xl">
               Um processo claro, conduzido com atenção
             </h2>
-            <p className="mt-3 text-muted-foreground">Você fornece as informações iniciais e nossa equipe orienta os próximos passos com transparência.</p>
+            <p className="mt-4 text-primary-foreground/70">Você fornece as informações iniciais e nossa equipe orienta os próximos passos com transparência.</p>
           </div>
 
-          <div className="relative mt-14 grid gap-8 sm:grid-cols-3">
+          <div className="relative mt-14 grid gap-4 sm:grid-cols-3">
             {/* connector */}
-            <div className="pointer-events-none absolute left-0 right-0 top-8 hidden h-px bg-border sm:block" />
+            <div className="pointer-events-none absolute left-0 right-0 top-8 hidden h-px bg-white/15 sm:block" />
             {[
               { step: "1", title: "Faça o teste gratuito", desc: "Responda algumas perguntas simples sobre sua situação" },
               { step: "2", title: "Análise personalizada", desc: "Nossa equipe verifica se você tem direito ao benefício" },
               { step: "3", title: "Acompanhamento do pedido", desc: "Você recebe orientação e acompanhamento durante as etapas aplicáveis ao seu caso" },
             ].map(({ step, title, desc }) => (
-              <div key={step} className="relative flex flex-col items-center text-center">
-                <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-primary bg-card font-serif text-lg font-semibold text-primary shadow-sm">
+              <div key={step} className="relative flex flex-col items-center rounded-xl border border-white/10 bg-white/[0.045] px-6 py-8 text-center backdrop-blur-sm">
+                <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-white/10 font-serif text-lg font-semibold text-primary-foreground">
                   {step}
                 </span>
-                <h3 className="mt-5 font-serif text-base font-semibold text-foreground">{title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+                <h3 className="mt-5 font-serif text-lg font-semibold text-primary-foreground">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-primary-foreground/65">{desc}</p>
               </div>
             ))}
           </div>
@@ -375,7 +371,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ EQUIPE ═══════ */}
-      <section id="equipe" className="bg-secondary/50 py-16 sm:py-20 lg:py-24" ref={teamRef}>
+      <section id="equipe" className="border-y border-border/70 bg-[#f3f6f8] py-20 sm:py-24 lg:py-28" ref={teamRef}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="grid items-end gap-8 lg:grid-cols-[0.8fr_1.2fr]">
             <div className="max-w-xl">
@@ -392,8 +388,8 @@ const Index = () => {
               </div>
             </div>
             <div className="grid gap-4 sm:grid-cols-[0.85fr_1.15fr]">
-              <img src={equipeAtendimento} alt="Equipe de atendimento da P&J Prev reunida" loading="lazy" width={466} height={410} className="h-72 w-full rounded-2xl border border-border object-cover object-center shadow-card sm:h-80" />
-              <img src={equipe} alt="Equipe completa da P&J Prev no escritório" loading="lazy" width={681} height={500} className="h-72 w-full rounded-2xl border border-border object-cover object-center shadow-card sm:h-80" />
+              <img src={equipeAtendimento} alt="Equipe de atendimento da P&J Prev reunida" loading="lazy" decoding="async" width={466} height={410} className="h-72 w-full rounded-xl border border-border object-cover object-center shadow-card sm:h-80" />
+              <img src={equipe} alt="Equipe completa da P&J Prev no escritório" loading="lazy" decoding="async" width={681} height={500} className="h-72 w-full rounded-xl border border-border object-cover object-center shadow-card sm:h-80" />
             </div>
           </div>
         </div>
@@ -462,8 +458,8 @@ const Index = () => {
       </section>
 
       {/* ═══════ FORMULÁRIO ═══════ */}
-      <section id="formulario" className="py-16 sm:py-20 lg:py-24" ref={formRef}>
-        <div className="mx-auto w-full max-w-3xl px-4 sm:px-6">
+      <section id="formulario" className="bg-[#f3f6f8] py-20 sm:py-24 lg:py-28" ref={formRef}>
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6">
           <div className="text-center">
             <span className="mb-3 inline-block text-sm font-medium text-primary">Atendimento</span>
             <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">
@@ -475,7 +471,7 @@ const Index = () => {
           {/* Formulário Respondi incorporado */}
           <div
             id="formulario-respondi"
-            className="relative mt-10 overflow-hidden rounded-3xl border border-primary/20 bg-card p-2 shadow-card-hover sm:p-4"
+            className="relative mt-10 overflow-hidden rounded-2xl border border-primary/15 bg-card p-2 shadow-card-hover sm:p-5"
             onPointerDown={() => { trackEvent("form_started", { source: "secao_formulario" }); }}
           >
             <div className="pointer-events-none absolute inset-x-8 top-0 h-20 rounded-full bg-primary/10 blur-3xl" />
@@ -485,7 +481,7 @@ const Index = () => {
               data-respondi-src="https://form.respondi.app/aymmBnHN"
               data-respondi-width="100%"
               data-respondi-height="600px"
-              className="relative min-h-[600px] w-full overflow-hidden rounded-2xl"
+              className="relative min-h-[600px] w-full overflow-hidden rounded-xl"
             />
           </div>
 
@@ -494,7 +490,7 @@ const Index = () => {
           </p>
 
           {/* CTA secundário — cliente existente */}
-          <div className="mt-6 flex flex-col items-center gap-2 rounded-2xl border border-dashed border-border bg-secondary/40 p-5 text-center sm:flex-row sm:justify-between sm:text-left">
+          <div className="mt-6 flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-5 text-center sm:flex-row sm:justify-between sm:text-left">
             <div className="flex items-center gap-3">
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <MessageCircle className="h-5 w-5" />
@@ -532,7 +528,7 @@ const Index = () => {
               { quote: "Recebi muito antes do esperado. Atendimento excelente e muito carinhoso!", name: "Paola Machado", stars: 5 },
               { quote: "Me ajudaram muito, valeu a pena. Recomendo para todas as mamães!", name: "Heloisa Santos", stars: 5 },
             ].map(({ quote, name, stars }) => (
-              <div key={name} className="rounded-2xl border border-border bg-card p-7 shadow-card">
+              <div key={name} className="border-l-2 border-primary bg-card px-7 py-6 shadow-card">
                 <div className="mb-3 flex gap-0.5">
                   {Array.from({ length: stars }).map((_, i) => (
                     <Star key={i} className="h-4 w-4 fill-primary text-primary" />
@@ -547,9 +543,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ CTA FINAL ═══════ */}
-      <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24" ref={ctaRef}>
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-accent/90" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent_60%)]" />
+      <section className="relative overflow-hidden bg-primary py-20 sm:py-24" ref={ctaRef}>
         <div className="relative mx-auto w-full max-w-3xl px-4 sm:px-6 text-center">
           <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-primary-foreground sm:text-3xl">
             Entenda seu caso com orientação especializada
@@ -558,7 +552,7 @@ const Index = () => {
             Faça uma análise inicial gratuita e receba uma orientação clara sobre os próximos passos do seu atendimento.
           </p>
           <button onClick={() => openFlow("cta_final")}
-            className="mt-8 inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-card px-8 py-4 text-base font-semibold text-primary shadow-card-hover transition-all duration-200 hover:scale-[1.03]">
+            className="mt-8 inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg bg-card px-8 py-4 text-base font-semibold text-primary shadow-card-hover transition-colors duration-200 hover:bg-secondary">
             Comece por aqui
             <ChevronRight className="h-4 w-4" />
           </button>
@@ -568,7 +562,7 @@ const Index = () => {
       {/* ═══════ LOCALIZAÇÃO ═══════ */}
       <section id="localizacao" className="py-16 sm:py-20 lg:py-24" ref={locationRef}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="grid min-w-0 overflow-hidden rounded-2xl border border-border bg-card shadow-card lg:grid-cols-[0.68fr_1.32fr]">
+          <div className="grid min-w-0 overflow-hidden rounded-xl border border-border bg-card shadow-card lg:grid-cols-[0.68fr_1.32fr]">
             <div className="flex min-w-0 flex-col justify-center p-7 sm:p-10">
               <span className="mb-3 inline-flex items-center gap-2 text-sm font-medium text-primary"><MapPin className="h-4 w-4" /> Onde estamos</span>
               <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">P&J Prev em Recife</h2>
@@ -585,43 +579,43 @@ const Index = () => {
       </section>
 
       {/* ═══════ RODAPÉ ═══════ */}
-      <footer className="border-t border-border pb-28 pt-12 sm:pb-12">
+      <footer className="border-t border-white/10 bg-[#0d2538] pb-28 pt-14 text-white sm:pb-12">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <div>
               <div className="flex items-center gap-2.5">
                 <img src={logo} alt="P&J Prev" width={112} height={112} loading="lazy" className="h-12 w-12 rounded-full object-cover shadow-card" />
-                <span className="font-serif text-base font-semibold leading-tight text-foreground">P&J Prev</span>
+                <span className="font-serif text-base font-semibold leading-tight text-white">P&amp;J Prev</span>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-sm leading-relaxed text-white/60">
                 Cuidando dos seus direitos com carinho e dedicação. Atendimento em todo o Brasil.
               </p>
             </div>
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground">Localização</h3>
-              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("maps_clicked", { source: "footer" })} className="mt-3 flex items-start gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-white">Localização</h3>
+              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("maps_clicked", { source: "footer" })} className="mt-3 flex items-start gap-2 text-sm text-white/60 transition-colors hover:text-white">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0" /> Recife - PE
               </a>
             </div>
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground">Contato</h3>
-              <p className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-white">Contato</h3>
+              <p className="mt-3 flex items-center gap-2 text-sm text-white/60">
                 <Phone className="h-4 w-4 shrink-0" /> (81) 3019-2443
               </p>
-              <p className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
+              <p className="mt-2 flex items-center gap-2 text-sm text-white/60">
                 <Mail className="h-4 w-4 shrink-0" /> pejprevrecife@gmail.com
               </p>
               <a href="https://wa.me/558130192443" target="_blank" rel="noopener noreferrer"
-                className="mt-2 flex items-center gap-2 text-sm text-primary hover:underline">
+                className="mt-2 flex items-center gap-2 text-sm text-white hover:underline">
                 <MessageCircle className="h-4 w-4 shrink-0" /> WhatsApp
               </a>
             </div>
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground">CNPJ</h3>
-              <p className="mt-3 text-sm text-muted-foreground">38.381.395/0001-92</p>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-white">CNPJ</h3>
+              <p className="mt-3 text-sm text-white/60">38.381.395/0001-92</p>
             </div>
           </div>
-          <div className="mt-10 border-t border-border pt-6 text-center text-xs text-muted-foreground">
+          <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/50">
             <div className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
               <Link to="/politica-de-privacidade" className="hover:text-primary hover:underline">Política de Privacidade</Link>
               <Link to="/termos-de-uso" className="hover:text-primary hover:underline">Termos de Uso</Link>
