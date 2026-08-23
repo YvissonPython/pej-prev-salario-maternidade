@@ -6,14 +6,12 @@ import {
   Instagram, ExternalLink, Building2
 } from "lucide-react";
 const logo = "https://pejprevsalariomaternidade.lovable.app/assets/logo-pjprev-circular-0AoflDRs.jpg";
-const rostoEmpresa = "https://pejprevsalariomaternidade.lovable.app/assets/pjprev-rosto-empresa-DLn8D0Gf.webp";
-const gestanteSemCarteira = "/images/gestante-sem-carteira.webp";
-const duvidasBeneficio = "/images/duvidas-beneficio.webp";
+const heroEspecialista = "/images/especialista-institucional-v2.webp";
+const gestanteSemCarteira = "/images/gestante-editorial-v2.webp";
+const duvidasBeneficio = "/images/mae-bebe-editorial-v2.webp";
 const equipeAtendimento = "/images/equipe-atendimento.webp";
 const equipeAcolhimento = "/images/equipe-acolhimento.webp";
-const especialistaPjPrev = "/images/especialista-pjprev.webp";
-const checklistSalarioMaternidade = "/images/checklist-salario-maternidade.webp";
-const atendimentoDigital = "/images/atendimento-digital-pjprev.webp";
+const atendimentoDigital = "/images/atendimento-digital-v2.webp";
 import StartFlowDialog from "@/components/StartFlowDialog";
 import { trackEvent } from "@/lib/tracking";
 import { loadPixels, fireConversion, listenForConsent } from "@/lib/pixels";
@@ -232,13 +230,13 @@ const Index = () => {
                 <div className="pointer-events-none absolute -inset-5 translate-x-5 translate-y-5 border border-white/20 lg:bg-primary" />
                 <div className="group relative overflow-hidden rounded-[1.25rem] border border-white/30 bg-card shadow-card-hover">
                   <img
-                    src={rostoEmpresa}
-                    alt="Profissional da P&J Prev sorrindo durante atendimento"
-                    width={768}
-                    height={954}
+                    src={heroEspecialista}
+                    alt="Especialista da P&J Prev pronta para orientar"
+                    width={1122}
+                    height={1402}
                     decoding="async"
                     fetchPriority="high"
-                    className="h-[430px] w-full object-cover object-[center_38%] sm:h-[560px]"
+                    className="h-[430px] w-full object-cover object-[68%_center] sm:h-[560px]"
                   />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-card via-card/70 to-transparent" />
                   <div className="absolute inset-x-5 bottom-5 rounded-xl border border-white/30 bg-card/94 p-4 backdrop-blur-md">
@@ -342,8 +340,8 @@ const Index = () => {
                   alt="Gestante conhecendo seus direitos ao salário-maternidade"
                   loading="lazy"
                   decoding="async"
-                  width={768}
-                  height={1024}
+                  width={1122}
+                  height={1402}
                   className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 />
               </div>
@@ -359,8 +357,8 @@ const Index = () => {
                   alt="Mãe com bebê esclarecendo dúvidas sobre o benefício"
                   loading="lazy"
                   decoding="async"
-                  width={768}
-                  height={1024}
+                  width={1122}
+                  height={1402}
                   className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 />
               </div>
@@ -415,19 +413,22 @@ const Index = () => {
               <Instagram className="h-5 w-5" /> Seguir @pejprev_ <ExternalLink className="h-4 w-4" />
             </a>
           </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { src: especialistaPjPrev, alt: "Especialista da P&J Prev pronta para orientar", label: "Atendimento sem burocracia", position: "object-center" },
-              { src: checklistSalarioMaternidade, alt: "Checklist informativo do salário-maternidade", label: "Informação para decidir melhor", position: "object-center" },
-              { src: atendimentoDigital, alt: "Especialista da P&J Prev em atendimento digital", label: "Proximidade em cada contato", position: "object-center" },
-            ].map((item, index) => (
-              <a key={item.label} href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_clicked", { source: `instagram_card_${index + 1}` })} className="group relative aspect-square overflow-hidden rounded-2xl bg-muted shadow-card focus-visible:ring-2 focus-visible:ring-ring">
-                <img src={item.src} alt={item.alt} loading="lazy" decoding="async" width={640} height={640} className={`h-full w-full object-cover ${item.position} transition-transform duration-700 ease-out group-hover:scale-[1.035]`} />
-                <span className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-foreground/90 to-transparent p-5 pt-16 text-primary-foreground">
-                  <span className="font-medium">{item.label}</span><Instagram className="h-5 w-5 transition-transform group-hover:scale-110" />
-                </span>
+          <div className="mt-10 grid overflow-hidden rounded-2xl border border-border bg-card shadow-card lg:grid-cols-[1.05fr_0.95fr]">
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_clicked", { source: "instagram_editorial" })} className="group relative min-h-[420px] overflow-hidden bg-muted focus-visible:ring-2 focus-visible:ring-ring sm:min-h-[540px]">
+              <img src={atendimentoDigital} alt="Especialista da P&J Prev em atendimento digital" loading="lazy" decoding="async" width={1122} height={1402} className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
+              <span className="absolute inset-0 bg-gradient-to-t from-foreground/55 via-transparent to-transparent" />
+              <span className="absolute bottom-5 left-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-foreground/55 px-4 py-2 text-sm font-medium text-white backdrop-blur-md">
+                <Instagram className="h-4 w-4" /> Bastidores do atendimento
+              </span>
+            </a>
+            <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Conteúdo responsável</span>
+              <h3 className="mt-4 font-serif text-2xl font-semibold leading-snug text-foreground sm:text-3xl">Informação clara também aproxima</h3>
+              <p className="mt-4 leading-7 text-muted-foreground">Acompanhe orientações, dúvidas frequentes e os bastidores de uma equipe que trata cada história com atenção.</p>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_clicked", { source: "instagram_editorial_cta" })} className="mt-7 inline-flex min-h-[48px] w-fit items-center justify-center gap-2 rounded-lg border border-primary/20 bg-secondary px-5 text-sm font-semibold text-primary transition-colors hover:border-primary/40 hover:bg-primary hover:text-primary-foreground">
+                Conhecer o perfil <ExternalLink className="h-4 w-4" />
               </a>
-            ))}
+            </div>
           </div>
         </div>
       </section>
