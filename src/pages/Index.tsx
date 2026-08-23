@@ -6,11 +6,14 @@ import {
   Instagram, ExternalLink, Building2
 } from "lucide-react";
 const logo = "https://pejprevsalariomaternidade.lovable.app/assets/logo-pjprev-circular-0AoflDRs.jpg";
-const gestanteFeliz = "https://pejprevsalariomaternidade.lovable.app/assets/gestante-feliz-CSZJsqke.jpg";
-const maeBebeFeliz = "https://pejprevsalariomaternidade.lovable.app/assets/mae-bebe-feliz-BX0n3RzG.jpg";
 const rostoEmpresa = "https://pejprevsalariomaternidade.lovable.app/assets/pjprev-rosto-empresa-DLn8D0Gf.webp";
-const equipeAtendimento = "https://pejprevsalariomaternidade.lovable.app/assets/equipe-atendimento-pjprev-BLtpDovc.webp";
-const equipe = "https://pejprevsalariomaternidade.lovable.app/assets/equipe-pjprev-NPaiShRP.webp";
+const gestanteSemCarteira = "/images/gestante-sem-carteira.webp";
+const duvidasBeneficio = "/images/duvidas-beneficio.webp";
+const equipeAtendimento = "/images/equipe-atendimento.webp";
+const equipeAcolhimento = "/images/equipe-acolhimento.webp";
+const especialistaPjPrev = "/images/especialista-pjprev.webp";
+const checklistSalarioMaternidade = "/images/checklist-salario-maternidade.webp";
+const atendimentoDigital = "/images/atendimento-digital-pjprev.webp";
 import StartFlowDialog from "@/components/StartFlowDialog";
 import { trackEvent } from "@/lib/tracking";
 import { loadPixels, fireConversion, listenForConsent } from "@/lib/pixels";
@@ -335,35 +338,35 @@ const Index = () => {
             <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow duration-300 hover:shadow-card-hover">
               <div className="w-full overflow-hidden bg-muted">
                 <img
-                  src={gestanteFeliz}
-                  alt="Gestante feliz segurando sapatinhos de bebê"
+                  src={gestanteSemCarteira}
+                  alt="Gestante conhecendo seus direitos ao salário-maternidade"
                   loading="lazy"
                   decoding="async"
                   width={768}
                   height={1024}
-                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-[center_30%] transition-transform duration-500 group-hover:scale-[1.025]"
+                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 />
               </div>
               <div className="flex-1 bg-card p-5 sm:p-6">
-                <h3 className="font-serif text-base font-semibold text-foreground">A espera mais doce</h3>
-                <p className="mt-1 text-sm text-muted-foreground">Você merece segurança financeira desde a gestação.</p>
+                <h3 className="font-serif text-base font-semibold text-foreground">Mesmo sem carteira assinada</h3>
+                <p className="mt-1 text-sm text-muted-foreground">Seu histórico de contribuições pode preservar o direito ao benefício.</p>
               </div>
             </div>
             <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow duration-300 hover:shadow-card-hover">
               <div className="w-full overflow-hidden bg-muted">
                 <img
-                  src={maeBebeFeliz}
-                  alt="Mãe feliz segurando seu bebê recém-nascido"
+                  src={duvidasBeneficio}
+                  alt="Mãe com bebê esclarecendo dúvidas sobre o benefício"
                   loading="lazy"
                   decoding="async"
                   width={768}
                   height={1024}
-                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-[center_30%] transition-transform duration-500 group-hover:scale-[1.025]"
+                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 />
               </div>
               <div className="flex-1 bg-card p-5 sm:p-6">
-                <h3 className="font-serif text-base font-semibold text-foreground">O melhor presente</h3>
-                <p className="mt-1 text-sm text-muted-foreground">Com o salário maternidade, cuide do seu bebê sem preocupações.</p>
+                <h3 className="font-serif text-base font-semibold text-foreground">Ainda pode existir um caminho</h3>
+                <p className="mt-1 text-sm text-muted-foreground">Cada caso tem prazos e condições próprias. A análise inicial ajuda a entender isso.</p>
               </div>
             </div>
           </div>
@@ -388,8 +391,12 @@ const Index = () => {
               </div>
             </div>
             <div className="grid gap-4 sm:grid-cols-[0.85fr_1.15fr]">
-              <img src={equipeAtendimento} alt="Equipe de atendimento da P&J Prev reunida" loading="lazy" decoding="async" width={466} height={410} className="h-72 w-full rounded-xl border border-border object-cover object-center shadow-card sm:h-80" />
-              <img src={equipe} alt="Equipe completa da P&J Prev no escritório" loading="lazy" decoding="async" width={681} height={500} className="h-72 w-full rounded-xl border border-border object-cover object-center shadow-card sm:h-80" />
+              <div className="group overflow-hidden rounded-xl border border-border bg-card shadow-card">
+                <img src={equipeAtendimento} alt="Equipe de atendimento da P&J Prev reunida" loading="lazy" decoding="async" width={456} height={407} className="h-72 w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035] sm:h-80" />
+              </div>
+              <div className="group overflow-hidden rounded-xl border border-border bg-card shadow-card">
+                <img src={equipeAcolhimento} alt="Profissionais da P&J Prev em momento de acolhimento" loading="lazy" decoding="async" width={418} height={454} className="h-72 w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035] sm:h-80" />
+              </div>
             </div>
           </div>
         </div>
@@ -410,12 +417,12 @@ const Index = () => {
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { src: rostoEmpresa, alt: "Profissional P&J Prev em atendimento", label: "Orientação que acolhe", position: "object-[center_28%]" },
-              { src: equipeAtendimento, alt: "Equipe P&J Prev durante atendimento", label: "Bastidores da equipe", position: "object-center" },
-              { src: equipe, alt: "Time completo da P&J Prev", label: "Quem cuida dos seus direitos", position: "object-center" },
+              { src: especialistaPjPrev, alt: "Especialista da P&J Prev pronta para orientar", label: "Atendimento sem burocracia", position: "object-center" },
+              { src: checklistSalarioMaternidade, alt: "Checklist informativo do salário-maternidade", label: "Informação para decidir melhor", position: "object-center" },
+              { src: atendimentoDigital, alt: "Especialista da P&J Prev em atendimento digital", label: "Proximidade em cada contato", position: "object-center" },
             ].map((item, index) => (
               <a key={item.label} href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_clicked", { source: `instagram_card_${index + 1}` })} className="group relative aspect-square overflow-hidden rounded-2xl bg-muted shadow-card focus-visible:ring-2 focus-visible:ring-ring">
-                <img src={item.src} alt={item.alt} loading="lazy" width={640} height={640} className={`h-full w-full object-cover ${item.position} transition-transform duration-500 group-hover:scale-[1.025]`} />
+                <img src={item.src} alt={item.alt} loading="lazy" decoding="async" width={640} height={640} className={`h-full w-full object-cover ${item.position} transition-transform duration-700 ease-out group-hover:scale-[1.035]`} />
                 <span className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-foreground/90 to-transparent p-5 pt-16 text-primary-foreground">
                   <span className="font-medium">{item.label}</span><Instagram className="h-5 w-5 transition-transform group-hover:scale-110" />
                 </span>
