@@ -2,8 +2,13 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+// Both values are public browser credentials. Keep production fallbacks so a
+// Git-based Vercel deploy cannot ship a blank page when env vars are omitted.
+const SUPABASE_URL =
+  import.meta.env.VITE_SUPABASE_URL || 'https://syhxiwjzefjvwawcqcjp.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY =
+  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+  'sb_publishable_-JyLeqMpOQukTInKgU_XDw_-kNGgucV';
 
 
 function isNewSupabaseApiKey(value: string): boolean {
