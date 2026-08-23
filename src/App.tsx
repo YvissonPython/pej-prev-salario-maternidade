@@ -10,6 +10,7 @@ import Index from "./pages/Index.tsx";
 const Admin = lazy(() => import("./pages/Admin.tsx"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy.tsx"));
 const TermsOfUse = lazy(() => import("./pages/TermsOfUse.tsx"));
+const ThankYou = lazy(() => import("./pages/ThankYou.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/admin" element={<Admin />} />
             <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
             <Route path="/termos-de-uso" element={<TermsOfUse />} />
+            <Route path="/obrigado" element={<ThankYou />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

@@ -7,6 +7,8 @@ export type TrackingEventName =
   | "select_nova_cliente"
   | "select_ja_cliente"
   | "form_opened"
+  | "form_started"
+  | "lead_completed"
   | "whatsapp_clicked"
   | "instagram_clicked"
   | "maps_clicked"

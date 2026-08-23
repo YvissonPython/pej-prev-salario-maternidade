@@ -299,9 +299,9 @@ const Index = () => {
           <div className="mx-auto max-w-2xl text-center">
             <span className="mb-3 inline-block text-sm font-medium text-primary">Passo a passo</span>
             <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">
-              Simples, rápido e sem burocracia
+              Um processo claro, conduzido com atenção
             </h2>
-            <p className="mt-3 text-muted-foreground">Você responde, a gente resolve. Tudo no seu tempo.</p>
+            <p className="mt-3 text-muted-foreground">Você fornece as informações iniciais e nossa equipe orienta os próximos passos com transparência.</p>
           </div>
 
           <div className="relative mt-14 grid gap-8 sm:grid-cols-3">
@@ -310,7 +310,7 @@ const Index = () => {
             {[
               { step: "1", title: "Faça o teste gratuito", desc: "Responda algumas perguntas simples sobre sua situação" },
               { step: "2", title: "Análise personalizada", desc: "Nossa equipe verifica se você tem direito ao benefício" },
-              { step: "3", title: "Receba o benefício", desc: "Cuidamos de todo o processo até o dinheiro cair na sua conta" },
+              { step: "3", title: "Acompanhamento do pedido", desc: "Você recebe orientação e acompanhamento durante as etapas aplicáveis ao seu caso" },
             ].map(({ step, title, desc }) => (
               <div key={step} className="relative flex flex-col items-center text-center">
                 <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-primary bg-card font-serif text-lg font-semibold text-primary shadow-sm">
@@ -476,7 +476,7 @@ const Index = () => {
           <div
             id="formulario-respondi"
             className="relative mt-10 overflow-hidden rounded-3xl border border-primary/20 bg-card p-2 shadow-card-hover sm:p-4"
-            onPointerDown={() => { trackEvent("form_interaction", { source: "secao_formulario" }); fireConversion("Lead"); }}
+            onPointerDown={() => { trackEvent("form_started", { source: "secao_formulario" }); }}
           >
             <div className="pointer-events-none absolute inset-x-8 top-0 h-20 rounded-full bg-primary/10 blur-3xl" />
             <div
@@ -522,7 +522,7 @@ const Index = () => {
           <div className="mx-auto max-w-2xl text-center">
             <span className="mb-3 inline-block text-sm font-medium text-primary">Depoimentos</span>
             <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">
-              Quem já fez, recomenda
+              Experiências de quem já foi atendida
             </h2>
           </div>
 
@@ -552,10 +552,10 @@ const Index = () => {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent_60%)]" />
         <div className="relative mx-auto w-full max-w-3xl px-4 sm:px-6 text-center">
           <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-primary-foreground sm:text-3xl">
-            Não deixe esse dinheiro parado
+            Entenda seu caso com orientação especializada
           </h2>
           <p className="mt-4 text-lg text-primary-foreground/80">
-            Quanto antes você solicitar, mais rápido pode receber. A análise é gratuita e sem compromisso.
+            Faça uma análise inicial gratuita e receba uma orientação clara sobre os próximos passos do seu atendimento.
           </p>
           <button onClick={() => openFlow("cta_final")}
             className="mt-8 inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-card px-8 py-4 text-base font-semibold text-primary shadow-card-hover transition-all duration-200 hover:scale-[1.03]">
