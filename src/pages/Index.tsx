@@ -262,15 +262,17 @@ const Index = () => {
       {/* ═══════ QUEM TEM DIREITO ═══════ */}
       <section id="quem-tem-direito" className="pb-20 pt-36 sm:pb-24 sm:pt-40 lg:pb-28 lg:pt-44" ref={whoRef}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="mb-3 inline-block text-sm font-medium text-primary">Quem pode receber?</span>
-            <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">
+          <div className="grid gap-5 border-b border-border pb-9 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+            <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Quem pode receber?</span>
+            <div>
+            <h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">
               Você pode ter direito se passou por isso
             </h2>
-            <p className="mt-3 text-muted-foreground">Muitas mulheres não sabem que têm direito. Veja se você se identifica:</p>
+            <p className="mt-3 max-w-2xl text-muted-foreground">Muitas mulheres não sabem que têm direito. Veja se alguma destas situações se aproxima da sua realidade.</p>
+            </div>
           </div>
 
-          <div className="reveal-stagger mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          <div className="reveal-stagger mt-10 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
             {[
               { icon: FileText, title: "Carteira assinada", desc: "Trabalhou de carteira assinada antes de engravidar ou durante a gestação" },
               { icon: Search, title: "Desempregada", desc: "Ficou desempregada durante a gestação e ainda contribuiu recentemente" },
@@ -293,49 +295,49 @@ const Index = () => {
       </section>
 
       {/* ═══════ COMO FUNCIONA ═══════ */}
-      <section id="como-funciona" className="bg-primary py-20 text-primary-foreground sm:py-24 lg:py-28" ref={howRef}>
+      <section id="como-funciona" className="bg-[#0d2538] py-20 text-primary-foreground sm:py-24 lg:py-28" ref={howRef}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="mb-3 inline-block text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground/65">Passo a passo</span>
-            <h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-primary-foreground sm:text-4xl">
+          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
+          <div className="max-w-xl lg:sticky lg:top-28 lg:self-start">
+            <span className="mb-4 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground/60"><span className="h-px w-8 bg-white/30" /> Passo a passo</span>
+            <h2 className="font-serif text-3xl font-semibold leading-tight text-balance text-primary-foreground sm:text-4xl">
               Um processo claro, conduzido com atenção
             </h2>
-            <p className="mt-4 text-primary-foreground/70">Você fornece as informações iniciais e nossa equipe orienta os próximos passos com transparência.</p>
+            <p className="mt-5 leading-7 text-primary-foreground/65">Você fornece as informações iniciais e nossa equipe orienta os próximos passos com transparência.</p>
+            <button onClick={() => openFlow("como_funciona")} className="mt-7 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/5 px-5 text-sm font-semibold text-white hover:bg-white/10">Iniciar análise <ChevronRight className="h-4 w-4" /></button>
           </div>
 
-          <div className="reveal-stagger relative mt-14 grid gap-4 sm:grid-cols-3">
-            {/* connector */}
-            <div className="pointer-events-none absolute left-0 right-0 top-8 hidden h-px bg-white/15 sm:block" />
+          <div className="reveal-stagger grid gap-4">
             {[
               { step: "1", title: "Faça o teste gratuito", desc: "Responda algumas perguntas simples sobre sua situação" },
               { step: "2", title: "Análise personalizada", desc: "Nossa equipe verifica se você tem direito ao benefício" },
               { step: "3", title: "Acompanhamento do pedido", desc: "Você recebe orientação e acompanhamento durante as etapas aplicáveis ao seu caso" },
             ].map(({ step, title, desc }) => (
-              <div key={step} className="reveal-item relative flex flex-col items-center rounded-xl border border-white/10 bg-white/[0.045] px-6 py-8 text-center backdrop-blur-sm">
-                <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-white/10 font-serif text-lg font-semibold text-primary-foreground">
+              <div key={step} className="reveal-item group grid gap-5 rounded-xl border border-white/10 bg-white/[0.045] px-6 py-7 backdrop-blur-sm transition-colors hover:bg-white/[0.07] sm:grid-cols-[auto_1fr] sm:items-center sm:p-8">
+                <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-white/10 font-serif text-lg font-semibold text-primary-foreground">
                   {step}
                 </span>
-                <h3 className="mt-5 font-serif text-lg font-semibold text-primary-foreground">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-primary-foreground/65">{desc}</p>
+                <div><h3 className="font-serif text-xl font-semibold text-primary-foreground">{title}</h3><p className="mt-2 text-sm leading-6 text-primary-foreground/60">{desc}</p></div>
               </div>
             ))}
+          </div>
           </div>
         </div>
       </section>
 
       {/* ═══════ GALERIA MATERNIDADE ═══════ */}
       <section className="py-16 sm:py-20 lg:py-24" ref={galleryRef}>
-        <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
-          <div className="mx-auto max-w-2xl text-center mb-12">
-            <span className="mb-3 inline-block text-sm font-medium text-primary">Maternidade</span>
-            <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <div className="mb-12 grid gap-4 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+            <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Maternidade</span>
+            <div><h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">
               Cada momento merece ser vivido com tranquilidade
             </h2>
-            <p className="mt-3 text-muted-foreground">Cuidamos da burocracia para você focar no que importa.</p>
+            <p className="mt-3 text-muted-foreground">Orientação para que você entenda a burocracia e possa focar no que importa.</p></div>
           </div>
 
-          <div className="reveal-stagger grid items-stretch gap-6 sm:grid-cols-2">
-            <div className="reveal-item media-frame group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow duration-300 hover:shadow-card-hover">
+          <div className="reveal-stagger grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-[1.12fr_0.88fr] lg:gap-8">
+            <div className="reveal-item media-frame group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow duration-300 hover:shadow-card-hover lg:mt-16">
               <div className="w-full overflow-hidden bg-muted">
                 <img
                   src={gestanteSemCarteira}
@@ -375,19 +377,19 @@ const Index = () => {
 
       {/* ═══════ EQUIPE ═══════ */}
       <section id="equipe" className="border-y border-border/70 bg-[#f3f6f8] py-20 sm:py-24 lg:py-28" ref={teamRef}>
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="grid items-end gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
             <div className="max-w-xl">
-              <span className="mb-3 inline-flex items-center gap-2 text-sm font-medium text-primary">
+              <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-primary">
                 <Building2 className="h-4 w-4" /> Atendimento de verdade
               </span>
-              <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">Pessoas cuidando de pessoas</h2>
+              <h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">Pessoas cuidando de pessoas</h2>
               <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
                 Por trás de cada análise existe uma equipe preparada para ouvir, orientar e acompanhar cada mãe com clareza e respeito.
               </p>
-              <div className="mt-6 grid grid-cols-2 gap-4 border-t border-border pt-6">
-                <div><strong className="block font-serif text-2xl text-primary">Humano</strong><span className="text-sm text-muted-foreground">Atendimento próximo</span></div>
-                <div><strong className="block font-serif text-2xl text-primary">Especializado</strong><span className="text-sm text-muted-foreground">Foco previdenciário</span></div>
+              <div className="mt-7 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border">
+                <div className="bg-card p-5"><strong className="block font-serif text-xl text-primary">Humano</strong><span className="mt-1 block text-xs text-muted-foreground">Atendimento próximo</span></div>
+                <div className="bg-card p-5"><strong className="block font-serif text-xl text-primary">Especializado</strong><span className="mt-1 block text-xs text-muted-foreground">Foco previdenciário</span></div>
               </div>
             </div>
             <div className="reveal-stagger grid gap-4 sm:grid-cols-[0.85fr_1.15fr]">
@@ -405,11 +407,11 @@ const Index = () => {
       {/* ═══════ INSTAGRAM ═══════ */}
       <section id="instagram" className="py-16 sm:py-20 lg:py-24" ref={instagramRef}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex flex-col gap-6 border-b border-border pb-9 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-2xl">
-              <span className="mb-3 inline-flex items-center gap-2 text-sm font-medium text-primary"><Instagram className="h-4 w-4" /> Acompanhe nosso dia a dia</span>
-              <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">Informação e acolhimento no Instagram</h2>
-              <p className="mt-3 text-lg text-muted-foreground">Conteúdo simples sobre seus direitos, bastidores e histórias da nossa equipe.</p>
+              <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-primary"><Instagram className="h-4 w-4" /> Acompanhe nosso dia a dia</span>
+              <h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">Informação e acolhimento no Instagram</h2>
+              <p className="mt-3 text-base leading-7 text-muted-foreground">Conteúdo simples sobre seus direitos, bastidores e histórias da nossa equipe.</p>
             </div>
             <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_clicked", { source: "instagram_header" })} className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-primary px-6 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
               <Instagram className="h-5 w-5" /> Seguir @pejprev_ <ExternalLink className="h-4 w-4" />
@@ -436,16 +438,17 @@ const Index = () => {
       </section>
 
       {/* ═══════ FAQ ═══════ */}
-      <section id="duvidas" className="bg-secondary/50 py-16 sm:py-20 lg:py-24" ref={faqRef}>
-        <div className="mx-auto w-full max-w-3xl px-4 sm:px-6">
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="mb-3 inline-block text-sm font-medium text-primary">Dúvidas frequentes</span>
-            <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">
+      <section id="duvidas" className="bg-secondary/50 py-20 sm:py-24 lg:py-28" ref={faqRef}>
+        <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.68fr_1.32fr] lg:gap-16">
+          <div className="max-w-md lg:sticky lg:top-28 lg:self-start">
+            <span className="mb-4 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Dúvidas frequentes</span>
+            <h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">
               Perguntas que as mamães mais fazem
             </h2>
+            <p className="mt-4 leading-7 text-muted-foreground">Informações gerais para ajudar você a compreender os pontos mais comuns antes da análise individual.</p>
           </div>
 
-          <div className="reveal-stagger mt-12 space-y-3">
+          <div className="reveal-stagger space-y-3">
             {faqs.map((faq, i) => (
               <div key={i} className="reveal-item overflow-hidden rounded-xl border border-border bg-card shadow-card">
                 <button
@@ -469,19 +472,19 @@ const Index = () => {
 
       {/* ═══════ FORMULÁRIO ═══════ */}
       <section id="formulario" className="bg-[#f3f6f8] py-20 sm:py-24 lg:py-28" ref={formRef}>
-        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6">
-          <div className="text-center">
-            <span className="mb-3 inline-block text-sm font-medium text-primary">Atendimento</span>
-            <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">
+        <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
+          <div className="grid gap-4 border-b border-border pb-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+            <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Atendimento</span>
+            <div><h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">
               Como podemos te ajudar hoje?
             </h2>
-            <p className="mt-3 text-muted-foreground">Escolha a opção que combina com você para agilizar seu atendimento.</p>
+            <p className="mt-3 text-muted-foreground">Escolha a opção que combina com você para agilizar seu atendimento.</p></div>
           </div>
 
           {/* Formulário Respondi incorporado */}
           <div
             id="formulario-respondi"
-            className="relative mt-10 overflow-hidden rounded-2xl border border-primary/15 bg-card p-2 shadow-card-hover sm:p-5"
+            className="relative mt-10 overflow-hidden rounded-2xl border border-primary/15 bg-card p-2 shadow-[0_24px_65px_-38px_rgba(8,42,68,0.45)] sm:p-5"
             onPointerDown={() => { trackEvent("form_started", { source: "secao_formulario" }); }}
           >
             <div className="pointer-events-none absolute inset-x-8 top-0 h-20 rounded-full bg-primary/10 blur-3xl" />
@@ -523,11 +526,11 @@ const Index = () => {
 
 
       {/* ═══════ PROVA SOCIAL ═══════ */}
-      <section className="bg-secondary/50 py-16 sm:py-20 lg:py-24" ref={socialRef}>
+      <section className="bg-card py-20 sm:py-24 lg:py-28" ref={socialRef}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="mb-3 inline-block text-sm font-medium text-primary">Depoimentos</span>
-            <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">
+          <div className="grid gap-4 border-b border-border pb-9 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+            <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Depoimentos</span>
+            <h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">
               Experiências de quem já foi atendida
             </h2>
           </div>
@@ -538,7 +541,8 @@ const Index = () => {
               { quote: "Recebi muito antes do esperado. Atendimento excelente e muito carinhoso!", name: "Paola Machado", stars: 5 },
               { quote: "Me ajudaram muito, valeu a pena. Recomendo para todas as mamães!", name: "Heloisa Santos", stars: 5 },
             ].map(({ quote, name, stars }) => (
-              <div key={name} className="reveal-item border-l-2 border-primary bg-card px-7 py-6 shadow-card">
+              <div key={name} className="reveal-item relative rounded-xl border border-border bg-[#f8fafb] px-7 py-7 shadow-card transition-shadow hover:shadow-card-hover">
+                <span className="absolute right-6 top-4 font-serif text-5xl leading-none text-primary/10">“</span>
                 <div className="mb-3 flex gap-0.5">
                   {Array.from({ length: stars }).map((_, i) => (
                     <Star key={i} className="h-4 w-4 fill-primary text-primary" />
@@ -553,7 +557,9 @@ const Index = () => {
       </section>
 
       {/* ═══════ CTA FINAL ═══════ */}
-      <section className="relative overflow-hidden bg-primary py-20 sm:py-24" ref={ctaRef}>
+      <section className="relative overflow-hidden bg-[#0d2538] py-20 sm:py-24 lg:py-28" ref={ctaRef}>
+        <div className="pointer-events-none absolute -right-32 -top-40 h-96 w-96 rounded-full border border-white/10" />
+        <div className="pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full border border-white/10" />
         <div className="relative mx-auto w-full max-w-3xl px-4 sm:px-6 text-center">
           <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-primary-foreground sm:text-3xl">
             Entenda seu caso com orientação especializada
@@ -566,13 +572,14 @@ const Index = () => {
             Comece por aqui
             <ChevronRight className="h-4 w-4" />
           </button>
+          <p className="mt-5 text-xs uppercase tracking-[0.14em] text-white/45">Análise inicial • Atendimento humano • Todo o Brasil</p>
         </div>
       </section>
 
       {/* ═══════ LOCALIZAÇÃO ═══════ */}
       <section id="localizacao" className="py-16 sm:py-20 lg:py-24" ref={locationRef}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="grid min-w-0 overflow-hidden rounded-xl border border-border bg-card shadow-card lg:grid-cols-[0.68fr_1.32fr]">
+          <div className="grid min-w-0 overflow-hidden rounded-2xl border border-border bg-card shadow-card-hover lg:grid-cols-[0.68fr_1.32fr]">
             <div className="flex min-w-0 flex-col justify-center p-7 sm:p-10">
               <span className="mb-3 inline-flex items-center gap-2 text-sm font-medium text-primary"><MapPin className="h-4 w-4" /> Onde estamos</span>
               <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">P&J Prev em Recife</h2>
