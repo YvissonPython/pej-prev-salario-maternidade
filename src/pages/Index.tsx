@@ -48,6 +48,16 @@ const INSTAGRAM_URL = "https://www.instagram.com/pejprev_/";
 const MAPS_URL = "https://maps.app.goo.gl/3YvycAQARNks93FT8";
 const MAP_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d506218.13460312574!2d-35.211338985709915!3d-7.593563372308102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab19328a02b2a5%3A0x733fa15492affb45!2sPeJ%20PREV%20Sal%C3%A1rio%20Maternidade!5e0!3m2!1spt-BR!2sbr!4v1786728933865!5m2!1spt-BR!2sbr";
 
+const experienceScenes = [
+  { id: "inicio", key: "entrada", label: "Entrada" },
+  { id: "quem-tem-direito", key: "clareza", label: "Clareza" },
+  { id: "como-funciona", key: "agilidade", label: "Agilidade" },
+  { id: "acolhimento", key: "acolhimento", label: "Acolhimento" },
+  { id: "equipe", key: "autoridade", label: "Autoridade" },
+  { id: "duvidas", key: "seguranca", label: "Segurança" },
+  { id: "formulario", key: "compromisso", label: "Compromisso" },
+];
+
 /* ─── FAQ data ─── */
 const faqs = [
   { q: "O que é o Salário Maternidade?", a: "É um benefício pago pelo INSS à segurada que acabou de ter um filho, adotou uma criança ou obteve guarda judicial para fins de adoção. Ele garante renda durante o período de afastamento." },
@@ -76,6 +86,7 @@ const Index = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [flowOpen, setFlowOpen] = useState(false);
   const [flowSource, setFlowSource] = useState("hero");
+  const [activeScene, setActiveScene] = useState("entrada");
 
   const openFlow = (source: string) => {
     setFlowSource(source);
@@ -100,6 +111,47 @@ const Index = () => {
     trackEvent("page_view");
     void loadPixels();
     return listenForConsent();
+  }, []);
+
+  /* Motor leve da visita 360º: apenas CSS variables, sem WebGL pesado. */
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const scenes = Array.from(document.querySelectorAll<HTMLElement>("[data-experience-scene]"));
+    if (!scenes.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      const key = (visible?.target as HTMLElement | undefined)?.dataset.experienceScene;
+      if (key) setActiveScene(key);
+    }, { threshold: [0.25, 0.45, 0.65], rootMargin: "-12% 0px -28% 0px" });
+
+    scenes.forEach(scene => observer.observe(scene));
+    if (reducedMotion) return () => observer.disconnect();
+
+    let frame = 0;
+    const updateJourney = () => {
+      const viewport = window.innerHeight;
+      const scrollRange = Math.max(document.documentElement.scrollHeight - viewport, 1);
+      document.documentElement.style.setProperty("--journey-progress", String(window.scrollY / scrollRange));
+      scenes.forEach(scene => {
+        const rect = scene.getBoundingClientRect();
+        const raw = (rect.top + rect.height / 2 - viewport / 2) / Math.max(viewport + rect.height, 1);
+        scene.style.setProperty("--scene-progress", String(Math.max(-1, Math.min(1, raw))));
+      });
+      frame = 0;
+    };
+    const requestUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateJourney);
+    };
+    updateJourney();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
 
@@ -197,8 +249,18 @@ const Index = () => {
 
       </nav>
 
+      <aside className="experience-rail" aria-label="Jornada pela P&J Prev">
+        <span className="experience-rail-progress" aria-hidden="true" />
+        {experienceScenes.map(scene => (
+          <button key={scene.key} type="button" onClick={() => scrollTo(scene.id)} aria-label={`Ir para ${scene.label}`} aria-current={activeScene === scene.key ? "step" : undefined} className={`experience-rail-step ${activeScene === scene.key ? "is-active" : ""}`}>
+            <span className="experience-rail-dot" aria-hidden="true" />
+            <span className="experience-rail-label">{scene.label}</span>
+          </button>
+        ))}
+      </aside>
+
       {/* ═══════ HERO ═══════ */}
-      <section id="inicio" className="relative overflow-visible bg-[#0d2538] text-white" ref={heroRef}>
+      <section id="inicio" data-experience-scene="entrada" data-scene-direction="right" className="experience-scene relative overflow-visible bg-[#0d2538] text-white" ref={heroRef}>
         <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
           <img src={heroEspecialista} alt="" width={1122} height={1402} decoding="async" fetchPriority="high" className="hero-cover-image h-full w-full object-cover object-[66%_center] md:absolute md:inset-y-0 md:right-0 md:w-[58%] md:object-[68%_center]" />
           <div className="hero-cover-overlay absolute inset-0" />
@@ -260,7 +322,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ QUEM TEM DIREITO ═══════ */}
-      <section id="quem-tem-direito" className="pb-20 pt-36 sm:pb-24 sm:pt-40 lg:pb-28 lg:pt-44" ref={whoRef}>
+      <section id="quem-tem-direito" data-experience-scene="clareza" data-scene-direction="left" className="experience-scene pb-20 pt-36 sm:pb-24 sm:pt-40 lg:pb-28 lg:pt-44" ref={whoRef}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-5 border-b border-border pb-9 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
             <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Quem pode receber?</span>
@@ -295,7 +357,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ COMO FUNCIONA ═══════ */}
-      <section id="como-funciona" className="bg-[#0d2538] py-20 text-primary-foreground sm:py-24 lg:py-28" ref={howRef}>
+      <section id="como-funciona" data-experience-scene="agilidade" data-scene-direction="right" className="experience-scene bg-[#0d2538] py-20 text-primary-foreground sm:py-24 lg:py-28" ref={howRef}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
           <div className="max-w-xl lg:sticky lg:top-28 lg:self-start">
@@ -326,7 +388,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ GALERIA MATERNIDADE ═══════ */}
-      <section className="py-16 sm:py-20 lg:py-24" ref={galleryRef}>
+      <section id="acolhimento" data-experience-scene="acolhimento" data-scene-direction="left" className="experience-scene py-16 sm:py-20 lg:py-24" ref={galleryRef}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="mb-12 grid gap-4 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
             <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Maternidade</span>
@@ -376,7 +438,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ EQUIPE ═══════ */}
-      <section id="equipe" className="border-y border-border/70 bg-[#f3f6f8] py-20 sm:py-24 lg:py-28" ref={teamRef}>
+      <section id="equipe" data-experience-scene="autoridade" data-scene-direction="right" className="experience-scene border-y border-border/70 bg-[#f3f6f8] py-20 sm:py-24 lg:py-28" ref={teamRef}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
             <div className="max-w-xl">
@@ -438,7 +500,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ FAQ ═══════ */}
-      <section id="duvidas" className="bg-secondary/50 py-20 sm:py-24 lg:py-28" ref={faqRef}>
+      <section id="duvidas" data-experience-scene="seguranca" data-scene-direction="left" className="experience-scene bg-secondary/50 py-20 sm:py-24 lg:py-28" ref={faqRef}>
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.68fr_1.32fr] lg:gap-16">
           <div className="max-w-md lg:sticky lg:top-28 lg:self-start">
             <span className="mb-4 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Dúvidas frequentes</span>
@@ -471,7 +533,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ FORMULÁRIO ═══════ */}
-      <section id="formulario" className="bg-[#f3f6f8] py-20 sm:py-24 lg:py-28" ref={formRef}>
+      <section id="formulario" data-experience-scene="compromisso" data-scene-direction="right" className="experience-scene bg-[#f3f6f8] py-20 sm:py-24 lg:py-28" ref={formRef}>
         <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
           <div className="grid gap-4 border-b border-border pb-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
             <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Atendimento</span>
