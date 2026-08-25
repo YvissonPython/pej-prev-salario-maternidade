@@ -23,13 +23,20 @@ const useScrollReveal = () => {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.classList.add("section-visible");
+      return;
+    }
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) { el.classList.add("section-visible"); obs.unobserve(el); } },
-      { threshold: 0.12 }
+      { threshold: 0.1, rootMargin: "0px 0px -6% 0px" }
     );
     el.classList.add("section-hidden");
-    obs.observe(el);
-    return () => obs.disconnect();
+    const frame = window.requestAnimationFrame(() => obs.observe(el));
+    return () => {
+      window.cancelAnimationFrame(frame);
+      obs.disconnect();
+    };
   }, []);
   return ref;
 };
@@ -228,7 +235,7 @@ const Index = () => {
             <div className="animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
               <div className="relative">
                 <div className="pointer-events-none absolute -inset-5 translate-x-5 translate-y-5 border border-white/20 lg:bg-primary" />
-                <div className="group relative overflow-hidden rounded-[1.25rem] border border-white/30 bg-card shadow-card-hover">
+                <div className="media-frame group relative overflow-hidden rounded-[1.25rem] border border-white/30 bg-card shadow-card-hover">
                   <img
                     src={heroEspecialista}
                     alt="Especialista da P&J Prev pronta para orientar"
@@ -236,7 +243,7 @@ const Index = () => {
                     height={1402}
                     decoding="async"
                     fetchPriority="high"
-                    className="h-[430px] w-full object-cover object-[68%_center] sm:h-[560px]"
+                    className="h-[430px] w-full object-cover object-[64%_center] transition-transform duration-700 ease-out group-hover:scale-[1.018] sm:h-[560px] sm:object-[68%_center]"
                   />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-card via-card/70 to-transparent" />
                   <div className="absolute inset-x-5 bottom-5 rounded-xl border border-white/30 bg-card/94 p-4 backdrop-blur-md">
@@ -268,7 +275,7 @@ const Index = () => {
             <p className="mt-3 text-muted-foreground">Muitas mulheres não sabem que têm direito. Veja se você se identifica:</p>
           </div>
 
-          <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          <div className="reveal-stagger mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
             {[
               { icon: FileText, title: "Carteira assinada", desc: "Trabalhou de carteira assinada antes de engravidar ou durante a gestação" },
               { icon: Search, title: "Desempregada", desc: "Ficou desempregada durante a gestação e ainda contribuiu recentemente" },
@@ -278,7 +285,7 @@ const Index = () => {
               { icon: Award, title: "Segurada especial", desc: "Trabalhadora rural ou pescadora artesanal" },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title}
-                className="group bg-card p-7 transition-colors duration-300 hover:bg-secondary/65 sm:p-8">
+                className="reveal-item group bg-card p-7 transition-colors duration-300 hover:bg-secondary/65 sm:p-8">
                 <span className="mb-5 flex h-10 w-10 items-center justify-center rounded-full border border-primary/20 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                   <Icon className="h-5 w-5" />
                 </span>
@@ -301,7 +308,7 @@ const Index = () => {
             <p className="mt-4 text-primary-foreground/70">Você fornece as informações iniciais e nossa equipe orienta os próximos passos com transparência.</p>
           </div>
 
-          <div className="relative mt-14 grid gap-4 sm:grid-cols-3">
+          <div className="reveal-stagger relative mt-14 grid gap-4 sm:grid-cols-3">
             {/* connector */}
             <div className="pointer-events-none absolute left-0 right-0 top-8 hidden h-px bg-white/15 sm:block" />
             {[
@@ -309,7 +316,7 @@ const Index = () => {
               { step: "2", title: "Análise personalizada", desc: "Nossa equipe verifica se você tem direito ao benefício" },
               { step: "3", title: "Acompanhamento do pedido", desc: "Você recebe orientação e acompanhamento durante as etapas aplicáveis ao seu caso" },
             ].map(({ step, title, desc }) => (
-              <div key={step} className="relative flex flex-col items-center rounded-xl border border-white/10 bg-white/[0.045] px-6 py-8 text-center backdrop-blur-sm">
+              <div key={step} className="reveal-item relative flex flex-col items-center rounded-xl border border-white/10 bg-white/[0.045] px-6 py-8 text-center backdrop-blur-sm">
                 <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-white/10 font-serif text-lg font-semibold text-primary-foreground">
                   {step}
                 </span>
@@ -332,8 +339,8 @@ const Index = () => {
             <p className="mt-3 text-muted-foreground">Cuidamos da burocracia para você focar no que importa.</p>
           </div>
 
-          <div className="grid items-stretch gap-6 sm:grid-cols-2">
-            <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow duration-300 hover:shadow-card-hover">
+          <div className="reveal-stagger grid items-stretch gap-6 sm:grid-cols-2">
+            <div className="reveal-item media-frame group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow duration-300 hover:shadow-card-hover">
               <div className="w-full overflow-hidden bg-muted">
                 <img
                   src={gestanteSemCarteira}
@@ -342,7 +349,7 @@ const Index = () => {
                   decoding="async"
                   width={1122}
                   height={1402}
-                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-[54%_center] transition-transform duration-700 ease-out group-hover:scale-[1.025] sm:object-center"
                 />
               </div>
               <div className="flex-1 bg-card p-5 sm:p-6">
@@ -350,7 +357,7 @@ const Index = () => {
                 <p className="mt-1 text-sm text-muted-foreground">Seu histórico de contribuições pode preservar o direito ao benefício.</p>
               </div>
             </div>
-            <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow duration-300 hover:shadow-card-hover">
+            <div className="reveal-item media-frame group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow duration-300 hover:shadow-card-hover">
               <div className="w-full overflow-hidden bg-muted">
                 <img
                   src={duvidasBeneficio}
@@ -359,7 +366,7 @@ const Index = () => {
                   decoding="async"
                   width={1122}
                   height={1402}
-                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-[52%_center] transition-transform duration-700 ease-out group-hover:scale-[1.025] sm:object-center"
                 />
               </div>
               <div className="flex-1 bg-card p-5 sm:p-6">
@@ -388,12 +395,12 @@ const Index = () => {
                 <div><strong className="block font-serif text-2xl text-primary">Especializado</strong><span className="text-sm text-muted-foreground">Foco previdenciário</span></div>
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-[0.85fr_1.15fr]">
-              <div className="group overflow-hidden rounded-xl border border-border bg-card shadow-card">
-                <img src={equipeAtendimento} alt="Equipe de atendimento da P&J Prev reunida" loading="lazy" decoding="async" width={456} height={407} className="h-72 w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035] sm:h-80" />
+            <div className="reveal-stagger grid gap-4 sm:grid-cols-[0.85fr_1.15fr]">
+              <div className="reveal-item media-frame group overflow-hidden rounded-xl border border-border bg-card shadow-card">
+                <img src={equipeAtendimento} alt="Equipe de atendimento da P&J Prev reunida" loading="lazy" decoding="async" width={456} height={407} className="h-72 w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.025] sm:h-80" />
               </div>
-              <div className="group overflow-hidden rounded-xl border border-border bg-card shadow-card">
-                <img src={equipeAcolhimento} alt="Profissionais da P&J Prev em momento de acolhimento" loading="lazy" decoding="async" width={418} height={454} className="h-72 w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035] sm:h-80" />
+              <div className="reveal-item media-frame group overflow-hidden rounded-xl border border-border bg-card shadow-card">
+                <img src={equipeAcolhimento} alt="Profissionais da P&J Prev em momento de acolhimento" loading="lazy" decoding="async" width={418} height={454} className="h-72 w-full object-cover object-[center_42%] transition-transform duration-700 ease-out group-hover:scale-[1.025] sm:h-80" />
               </div>
             </div>
           </div>
@@ -414,7 +421,7 @@ const Index = () => {
             </a>
           </div>
           <div className="mt-10 grid overflow-hidden rounded-2xl border border-border bg-card shadow-card lg:grid-cols-[1.05fr_0.95fr]">
-            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_clicked", { source: "instagram_editorial" })} className="group relative min-h-[420px] overflow-hidden bg-muted focus-visible:ring-2 focus-visible:ring-ring sm:min-h-[540px]">
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_clicked", { source: "instagram_editorial" })} className="media-frame group relative min-h-[420px] overflow-hidden bg-muted focus-visible:ring-2 focus-visible:ring-ring sm:min-h-[540px]">
               <img src={atendimentoDigital} alt="Especialista da P&J Prev em atendimento digital" loading="lazy" decoding="async" width={1122} height={1402} className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
               <span className="absolute inset-0 bg-gradient-to-t from-foreground/55 via-transparent to-transparent" />
               <span className="absolute bottom-5 left-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-foreground/55 px-4 py-2 text-sm font-medium text-white backdrop-blur-md">
@@ -443,9 +450,9 @@ const Index = () => {
             </h2>
           </div>
 
-          <div className="mt-12 space-y-3">
+          <div className="reveal-stagger mt-12 space-y-3">
             {faqs.map((faq, i) => (
-              <div key={i} className="rounded-xl border border-border bg-card shadow-card overflow-hidden">
+              <div key={i} className="reveal-item overflow-hidden rounded-xl border border-border bg-card shadow-card">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="flex min-h-[56px] w-full items-center justify-between gap-4 rounded-xl p-5 text-left transition-colors hover:bg-secondary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -456,7 +463,7 @@ const Index = () => {
                   </span>
                   <ChevronDown className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 ${openFaq === i ? "rotate-180" : ""}`} />
                 </button>
-                <div className={`overflow-hidden transition-all duration-300 ${openFaq === i ? "max-h-60 pb-5" : "max-h-0"}`}>
+                <div className={`overflow-hidden transition-all duration-[360ms] ease-out ${openFaq === i ? "max-h-60 pb-5 opacity-100" : "max-h-0 opacity-0"}`}>
                   <p className="px-5 pl-[3.25rem] text-sm leading-relaxed text-muted-foreground">{faq.a}</p>
                 </div>
               </div>
@@ -530,13 +537,13 @@ const Index = () => {
             </h2>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="reveal-stagger mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { quote: "Recebi meu benefício e veio em uma boa hora. Gratidão por tudo!", name: "Natanea Maria", stars: 5 },
               { quote: "Recebi muito antes do esperado. Atendimento excelente e muito carinhoso!", name: "Paola Machado", stars: 5 },
               { quote: "Me ajudaram muito, valeu a pena. Recomendo para todas as mamães!", name: "Heloisa Santos", stars: 5 },
             ].map(({ quote, name, stars }) => (
-              <div key={name} className="border-l-2 border-primary bg-card px-7 py-6 shadow-card">
+              <div key={name} className="reveal-item border-l-2 border-primary bg-card px-7 py-6 shadow-card">
                 <div className="mb-3 flex gap-0.5">
                   {Array.from({ length: stars }).map((_, i) => (
                     <Star key={i} className="h-4 w-4 fill-primary text-primary" />
