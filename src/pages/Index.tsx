@@ -260,11 +260,14 @@ const Index = () => {
       </aside>
 
       {/* ═══════ HERO ═══════ */}
-      <section id="inicio" data-experience-scene="entrada" data-scene-direction="right" className="experience-scene relative overflow-visible bg-[#0d2538] text-white" ref={heroRef}>
+      <section id="inicio" data-experience-scene="entrada" data-scene-direction="right" data-experience-index="01" className="experience-scene hero-cinematic relative overflow-visible bg-[#071b2c] text-white" ref={heroRef}>
         <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
           <img src={heroEspecialista} alt="" width={1122} height={1402} decoding="async" fetchPriority="high" className="hero-cover-image h-full w-full object-cover object-[66%_center] md:absolute md:inset-y-0 md:right-0 md:w-[58%] md:object-[68%_center]" />
           <div className="hero-cover-overlay absolute inset-0" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0d2538] to-transparent" />
+          <div className="hero-grid absolute inset-0" />
+          <span className="hero-orbit hero-orbit-one" />
+          <span className="hero-orbit hero-orbit-two" />
         </div>
 
         <div className="relative mx-auto flex min-h-[calc(100svh-73px)] w-full max-w-7xl items-center px-4 pb-36 pt-16 sm:px-6 sm:pb-40 lg:px-8 lg:py-24 lg:pb-44">
@@ -294,7 +297,21 @@ const Index = () => {
               <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4 text-[#9fc7e2]" /> Todo o Brasil</span>
             </div>
           </div>
+          <div className="hero-proof-stack" aria-label="Diferenciais do atendimento">
+            <div className="hero-proof-card hero-proof-card-main">
+              <span>Atendimento</span>
+              <strong>Humano, claro e seguro.</strong>
+            </div>
+            <div className="hero-proof-card hero-proof-card-small">
+              <Shield className="h-4 w-4" />
+              <span>Análise inicial gratuita</span>
+            </div>
+          </div>
         </div>
+
+        <button type="button" onClick={() => scrollTo("quem-tem-direito")} className="hero-scroll-cue" aria-label="Continuar a experiência">
+          <span>Explore</span><ChevronDown className="h-4 w-4" />
+        </button>
 
         <div className="hero-quick-panel relative z-20 mx-auto -mt-28 w-[calc(100%-2rem)] max-w-6xl translate-y-16 overflow-hidden rounded-2xl border border-white/70 bg-card text-foreground shadow-[0_28px_70px_-34px_rgba(5,25,42,0.55)] sm:w-[calc(100%-3rem)] lg:grid lg:grid-cols-[0.72fr_1.55fr_auto] lg:items-stretch">
           <div className="flex flex-col justify-center bg-secondary/65 p-6 sm:p-7">
@@ -322,7 +339,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ QUEM TEM DIREITO ═══════ */}
-      <section id="quem-tem-direito" data-experience-scene="clareza" data-scene-direction="left" className="experience-scene pb-20 pt-36 sm:pb-24 sm:pt-40 lg:pb-28 lg:pt-44" ref={whoRef}>
+      <section id="quem-tem-direito" data-experience-scene="clareza" data-scene-direction="left" data-experience-index="02" className="experience-scene pb-20 pt-36 sm:pb-24 sm:pt-40 lg:pb-28 lg:pt-44" ref={whoRef}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-5 border-b border-border pb-9 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
             <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Quem pode receber?</span>
@@ -357,7 +374,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ COMO FUNCIONA ═══════ */}
-      <section id="como-funciona" data-experience-scene="agilidade" data-scene-direction="right" className="experience-scene bg-[#0d2538] py-20 text-primary-foreground sm:py-24 lg:py-28" ref={howRef}>
+      <section id="como-funciona" data-experience-scene="agilidade" data-scene-direction="right" data-experience-index="03" className="experience-scene bg-[#0d2538] py-20 text-primary-foreground sm:py-24 lg:py-28" ref={howRef}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
           <div className="max-w-xl lg:sticky lg:top-28 lg:self-start">
@@ -388,7 +405,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ GALERIA MATERNIDADE ═══════ */}
-      <section id="acolhimento" data-experience-scene="acolhimento" data-scene-direction="left" className="experience-scene py-16 sm:py-20 lg:py-24" ref={galleryRef}>
+      <section id="acolhimento" data-experience-scene="acolhimento" data-scene-direction="left" data-experience-index="04" className="experience-scene py-16 sm:py-20 lg:py-24" ref={galleryRef}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="mb-12 grid gap-4 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
             <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Maternidade</span>
@@ -438,7 +455,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ EQUIPE ═══════ */}
-      <section id="equipe" data-experience-scene="autoridade" data-scene-direction="right" className="experience-scene border-y border-border/70 bg-[#f3f6f8] py-20 sm:py-24 lg:py-28" ref={teamRef}>
+      <section id="equipe" data-experience-scene="autoridade" data-scene-direction="right" data-experience-index="05" className="experience-scene border-y border-border/70 bg-[#f3f6f8] py-20 sm:py-24 lg:py-28" ref={teamRef}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
             <div className="max-w-xl">
@@ -500,7 +517,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ FAQ ═══════ */}
-      <section id="duvidas" data-experience-scene="seguranca" data-scene-direction="left" className="experience-scene bg-secondary/50 py-20 sm:py-24 lg:py-28" ref={faqRef}>
+      <section id="duvidas" data-experience-scene="seguranca" data-scene-direction="left" data-experience-index="06" className="experience-scene bg-secondary/50 py-20 sm:py-24 lg:py-28" ref={faqRef}>
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.68fr_1.32fr] lg:gap-16">
           <div className="max-w-md lg:sticky lg:top-28 lg:self-start">
             <span className="mb-4 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Dúvidas frequentes</span>

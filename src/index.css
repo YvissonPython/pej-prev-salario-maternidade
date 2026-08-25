@@ -221,8 +221,131 @@
 
 .hero-cover-overlay {
   background:
-    linear-gradient(90deg, #0d2538 0%, #0d2538 39%, rgba(13, 37, 56, 0.94) 48%, rgba(13, 37, 56, 0.52) 68%, rgba(13, 37, 56, 0.08) 100%),
+    linear-gradient(90deg, #071b2c 0%, #071b2c 35%, rgba(7, 27, 44, 0.94) 47%, rgba(7, 27, 44, 0.5) 68%, rgba(7, 27, 44, 0.08) 100%),
     linear-gradient(180deg, rgba(7, 27, 44, 0.08), rgba(7, 27, 44, 0.32));
+}
+
+.hero-cinematic {
+  min-height: calc(100svh - 72px);
+  perspective: 1800px;
+}
+
+.hero-grid {
+  opacity: 0.16;
+  background-image:
+    linear-gradient(hsl(0 0% 100% / 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(0 0% 100% / 0.1) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(90deg, black, transparent 64%);
+}
+
+.hero-orbit {
+  position: absolute;
+  border: 1px solid hsl(203 70% 76% / 0.18);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  animation: orbit-drift 12s ease-in-out infinite alternate;
+}
+
+.hero-orbit-one {
+  left: -9vw;
+  top: 13%;
+  width: 34vw;
+  height: 34vw;
+  transform: rotateX(68deg) rotateZ(-12deg);
+}
+
+.hero-orbit-two {
+  left: 24%;
+  bottom: -24%;
+  width: 26vw;
+  height: 26vw;
+  animation-delay: -4s;
+}
+
+@keyframes orbit-drift {
+  from { transform: rotateX(68deg) rotateZ(-12deg) translate3d(0, 0, -30px); }
+  to { transform: rotateX(62deg) rotateZ(18deg) translate3d(18px, -12px, 25px); }
+}
+
+.hero-proof-stack {
+  position: absolute;
+  right: 4.5%;
+  bottom: 13rem;
+  z-index: 5;
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+  pointer-events: none;
+  transform: perspective(1000px) rotateY(-6deg) rotateX(2deg);
+  transform-style: preserve-3d;
+}
+
+.hero-proof-card {
+  border: 1px solid hsl(0 0% 100% / 0.24);
+  background: hsl(208 54% 13% / 0.62);
+  color: white;
+  box-shadow: 0 24px 70px -30px hsl(210 80% 4% / 0.82), inset 0 1px 0 hsl(0 0% 100% / 0.16);
+  backdrop-filter: blur(18px) saturate(1.15);
+}
+
+.hero-proof-card-main {
+  width: min(280px, 25vw);
+  border-radius: 20px;
+  padding: 20px 22px;
+  transform: translateZ(30px);
+}
+
+.hero-proof-card-main span {
+  display: block;
+  margin-bottom: 6px;
+  color: hsl(203 55% 78%);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hero-proof-card-main strong {
+  display: block;
+  font-family: 'Source Serif 4', serif;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.hero-proof-card-small {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: max-content;
+  border-radius: 999px;
+  padding: 11px 15px;
+  font-size: 12px;
+  font-weight: 700;
+  transform: translate3d(-18px, 0, 62px);
+}
+
+.hero-scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 5.7rem;
+  z-index: 22;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: hsl(0 0% 100% / 0.62);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  animation: scroll-cue 2.2s ease-in-out infinite;
+}
+
+@keyframes scroll-cue {
+  0%, 100% { transform: translate(-50%, 0); opacity: 0.55; }
+  50% { transform: translate(-50%, 7px); opacity: 1; }
 }
 
 .hero-quick-panel {
@@ -249,6 +372,31 @@
   --scene-progress: 0;
   isolation: isolate;
   perspective: 1500px;
+}
+
+.experience-scene[data-experience-index]::after {
+  content: attr(data-experience-index);
+  position: absolute;
+  top: 4rem;
+  right: max(4vw, 28px);
+  z-index: -1;
+  color: hsl(var(--primary) / 0.045);
+  font-family: 'Source Serif 4', serif;
+  font-size: clamp(7rem, 17vw, 16rem);
+  font-weight: 600;
+  line-height: 0.8;
+  letter-spacing: -0.08em;
+  pointer-events: none;
+  transform: translate3d(0, calc(var(--scene-progress) * -38px), -80px);
+}
+
+#inicio.experience-scene::after,
+#como-funciona.experience-scene::after {
+  color: hsl(0 0% 100% / 0.035);
+}
+
+.experience-scene > div:not(.hero-quick-panel) {
+  transform-style: preserve-3d;
 }
 
 .experience-scene::before {
@@ -377,6 +525,12 @@
   .hero-cover-overlay {
     background: linear-gradient(90deg, rgba(13, 37, 56, 0.98), rgba(13, 37, 56, 0.82) 62%, rgba(13, 37, 56, 0.58));
   }
+
+  .hero-grid { background-size: 44px 44px; opacity: 0.1; }
+  .hero-proof-stack { display: none; }
+  .hero-scroll-cue { bottom: 5.4rem; }
+  .hero-orbit-one { width: 86vw; height: 86vw; left: -36vw; }
+  .hero-orbit-two { display: none; }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -449,6 +603,9 @@
   }
 
   .hero-cover-image { transform: none; }
+
+  .hero-orbit,
+  .hero-scroll-cue { animation: none; }
 
   .experience-scene::before { display: none; }
   .experience-rail { display: none; }
