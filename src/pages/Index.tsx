@@ -198,15 +198,16 @@ const Index = () => {
       </nav>
 
       {/* ═══════ HERO ═══════ */}
-      <section id="inicio" className="relative overflow-hidden border-b border-border/70 bg-[#f3f6f8]">
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] bg-primary lg:block" />
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-16 pt-12 sm:px-6 md:py-20 lg:px-8 lg:py-24" ref={heroRef}>
-          <div className="grid items-center gap-12 md:grid-cols-[0.94fr_1.06fr] lg:gap-20">
-            <div className="animate-fade-in-up">
+      <section id="inicio" className="relative flex min-h-[calc(100svh-73px)] items-center overflow-hidden border-b border-border/70 bg-[#f3f6f8]">
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[47%] bg-primary lg:block" />
+        <div className="pointer-events-none absolute right-[8%] top-[8%] hidden h-72 w-72 rounded-full bg-white/10 blur-3xl lg:block" />
+        <div className="relative mx-auto w-full max-w-[90rem] px-4 pb-14 pt-10 sm:px-6 md:py-14 lg:px-10 lg:py-10" ref={heroRef}>
+          <div className="grid items-center gap-11 md:grid-cols-[0.86fr_1.14fr] lg:gap-16 xl:grid-cols-[0.82fr_1.18fr]">
+            <div className="animate-fade-in-up lg:py-10">
               <span className="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
                 <span className="h-px w-8 bg-primary" /> Orientação especializada
               </span>
-              <h1 className="max-w-2xl font-serif text-[2.25rem] font-semibold leading-[1.06] tracking-[-0.025em] text-balance text-foreground sm:text-5xl lg:text-[3.7rem]">
+              <h1 className="max-w-2xl font-serif text-[2.35rem] font-semibold leading-[1.04] tracking-[-0.03em] text-balance text-foreground sm:text-5xl lg:text-[3.75rem] xl:text-[4.2rem]">
                 Entenda seu direito ao <span className="text-primary">salário-maternidade.</span>
               </h1>
               <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
@@ -232,10 +233,10 @@ const Index = () => {
             </div>
 
             {/* hero image */}
-            <div className="animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
-              <div className="relative">
-                <div className="pointer-events-none absolute -inset-5 translate-x-5 translate-y-5 border border-white/20 lg:bg-primary" />
-                <div className="media-frame group relative overflow-hidden rounded-[1.25rem] border border-white/30 bg-card shadow-card-hover">
+            <div className="hero-stage animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
+              <div className="hero-depth-layer hero-depth-layer-back" aria-hidden="true" />
+              <div className="hero-depth-layer hero-depth-layer-mid" aria-hidden="true" />
+              <div className="hero-image-card media-frame group relative overflow-hidden rounded-[1.5rem] border border-white/35 bg-card shadow-card-hover">
                   <img
                     src={heroEspecialista}
                     alt="Especialista da P&J Prev pronta para orientar"
@@ -243,10 +244,10 @@ const Index = () => {
                     height={1402}
                     decoding="async"
                     fetchPriority="high"
-                    className="h-[430px] w-full object-cover object-[64%_center] transition-transform duration-700 ease-out group-hover:scale-[1.018] sm:h-[560px] sm:object-[68%_center]"
+                    className="hero-primary-image h-[500px] w-full object-cover object-[64%_center] transition-transform duration-700 ease-out group-hover:scale-[1.018] sm:h-[620px] sm:object-[68%_center] md:h-[76svh] md:max-h-[760px] lg:min-h-[610px]"
                   />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-card via-card/70 to-transparent" />
-                  <div className="absolute inset-x-5 bottom-5 rounded-xl border border-white/30 bg-card/94 p-4 backdrop-blur-md">
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#071b2c]/80 via-[#071b2c]/20 to-transparent" />
+                  <div className="hero-trust-card absolute bottom-5 left-5 right-5 rounded-xl border border-white/25 bg-card/92 p-4 shadow-card-hover backdrop-blur-xl sm:left-auto sm:right-6 sm:w-[300px]">
                     <div className="flex items-center gap-3">
                       <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/15 text-primary">
                         <Check className="h-4 w-4" />
@@ -257,7 +258,6 @@ const Index = () => {
                       </div>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
           </div>
