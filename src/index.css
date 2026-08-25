@@ -213,63 +213,45 @@
   transition: box-shadow 0.7s ease-out;
 }
 
-/* Hero em camadas: perspectiva discreta para profundidade institucional. */
-.hero-stage {
-  position: relative;
-  perspective: 1400px;
+/* Hero inspirado em páginas institucionais: foto integrada e painel em relevo. */
+.hero-cover-image {
+  transform: scale(1.015);
+  filter: saturate(0.92) contrast(1.02);
 }
 
-.hero-image-card {
-  z-index: 3;
-  transform: translateZ(0);
-  transform-origin: center center;
+.hero-cover-overlay {
+  background:
+    linear-gradient(90deg, #0d2538 0%, #0d2538 39%, rgba(13, 37, 56, 0.94) 48%, rgba(13, 37, 56, 0.52) 68%, rgba(13, 37, 56, 0.08) 100%),
+    linear-gradient(180deg, rgba(7, 27, 44, 0.08), rgba(7, 27, 44, 0.32));
+}
+
+.hero-quick-panel {
+  transform-style: preserve-3d;
   box-shadow:
-    0 36px 80px -40px hsl(210 62% 10% / 0.65),
-    0 18px 34px -26px hsl(210 62% 10% / 0.4);
-  transition:
-    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    0 28px 70px -34px hsl(208 70% 10% / 0.58),
+    0 8px 22px -16px hsl(208 60% 14% / 0.28),
+    inset 0 1px 0 hsl(0 0% 100% / 0.9);
 }
 
-.hero-depth-layer {
+.hero-quick-panel::after {
+  content: "";
   position: absolute;
-  inset: 3% -2% -3% 4%;
-  pointer-events: none;
-  border-radius: 1.75rem;
-  border: 1px solid hsl(0 0% 100% / 0.2);
+  inset: auto 5% -18px;
+  z-index: -1;
+  height: 32px;
+  border-radius: 50%;
+  background: hsl(208 70% 10% / 0.22);
+  filter: blur(18px);
 }
 
-.hero-depth-layer-back {
-  z-index: 1;
-  transform: translate3d(28px, 24px, -70px) rotateY(-2deg);
-  background: hsl(208 52% 30% / 0.7);
-  box-shadow: 0 34px 80px -48px hsl(210 70% 8% / 0.8);
-}
-
-.hero-depth-layer-mid {
-  z-index: 2;
-  inset: 1.5% -1% -1.5% 2%;
-  transform: translate3d(14px, 12px, -30px) rotateY(-1deg);
-  background: linear-gradient(145deg, hsl(0 0% 100% / 0.18), hsl(205 45% 36% / 0.18));
-  backdrop-filter: blur(4px);
-}
-
-@media (min-width: 1024px) {
-  .hero-image-card {
-    transform: rotateY(-3.2deg) rotateX(0.8deg) translateZ(18px);
+@media (max-width: 767px) {
+  .hero-cover-image {
+    opacity: 0.48;
+    object-position: 70% center;
   }
 
-  .hero-stage:hover .hero-image-card {
-    transform: rotateY(-1deg) rotateX(0.2deg) translate3d(-4px, -3px, 28px);
-    box-shadow:
-      0 46px 92px -44px hsl(210 62% 8% / 0.72),
-      0 22px 42px -28px hsl(210 62% 8% / 0.5);
-  }
-}
-
-@media (max-width: 1023px) {
-  .hero-depth-layer {
-    display: none;
+  .hero-cover-overlay {
+    background: linear-gradient(90deg, rgba(13, 37, 56, 0.98), rgba(13, 37, 56, 0.82) 62%, rgba(13, 37, 56, 0.58));
   }
 }
 
@@ -331,11 +313,7 @@
     transform: none !important;
   }
 
-  .hero-image-card,
-  .hero-stage:hover .hero-image-card {
-    transform: none;
-    transition: none;
-  }
+  .hero-cover-image { transform: none; }
 }
 
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  Check, FileText, Search, Heart, ChevronDown, ChevronRight,
+  FileText, Search, Heart, ChevronDown, ChevronRight,
   Mail, Phone, MapPin, Baby, Shield, Clock,
   MessageCircle, HelpCircle, Star, Users, Award,
   Instagram, ExternalLink, Building2
@@ -198,74 +198,69 @@ const Index = () => {
       </nav>
 
       {/* ═══════ HERO ═══════ */}
-      <section id="inicio" className="relative flex min-h-[calc(100svh-73px)] items-center overflow-hidden border-b border-border/70 bg-[#f3f6f8]">
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[47%] bg-primary lg:block" />
-        <div className="pointer-events-none absolute right-[8%] top-[8%] hidden h-72 w-72 rounded-full bg-white/10 blur-3xl lg:block" />
-        <div className="relative mx-auto w-full max-w-[90rem] px-4 pb-14 pt-10 sm:px-6 md:py-14 lg:px-10 lg:py-10" ref={heroRef}>
-          <div className="grid items-center gap-11 md:grid-cols-[0.86fr_1.14fr] lg:gap-16 xl:grid-cols-[0.82fr_1.18fr]">
-            <div className="animate-fade-in-up lg:py-10">
-              <span className="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
-                <span className="h-px w-8 bg-primary" /> Orientação especializada
-              </span>
-              <h1 className="max-w-2xl font-serif text-[2.35rem] font-semibold leading-[1.04] tracking-[-0.03em] text-balance text-foreground sm:text-5xl lg:text-[3.75rem] xl:text-[4.2rem]">
-                Entenda seu direito ao <span className="text-primary">salário-maternidade.</span>
-              </h1>
-              <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
-                Uma análise inicial clara e gratuita para gestantes, mães, MEIs, autônomas e seguradas do INSS — com atendimento humano em todo o Brasil.
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <button onClick={() => openFlow("hero")}
-                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-button transition-colors hover:bg-primary/92 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                  Fazer análise gratuita
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-                <button onClick={() => scrollTo("como-funciona")}
-                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-6 py-3.5 text-base font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                  Como funciona
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-              </div>
-              <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-5 text-sm text-muted-foreground">
-                <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Análise gratuita</span>
-                <span className="flex items-center gap-1.5"><Clock className="h-4 w-4 text-primary" /> Resultado em minutos</span>
-                <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4 text-primary" /> Todo o Brasil</span>
-              </div>
-            </div>
+      <section id="inicio" className="relative overflow-visible bg-[#0d2538] text-white" ref={heroRef}>
+        <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+          <img src={heroEspecialista} alt="" width={1122} height={1402} decoding="async" fetchPriority="high" className="hero-cover-image h-full w-full object-cover object-[66%_center] md:absolute md:inset-y-0 md:right-0 md:w-[58%] md:object-[68%_center]" />
+          <div className="hero-cover-overlay absolute inset-0" />
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0d2538] to-transparent" />
+        </div>
 
-            {/* hero image */}
-            <div className="hero-stage animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
-              <div className="hero-depth-layer hero-depth-layer-back" aria-hidden="true" />
-              <div className="hero-depth-layer hero-depth-layer-mid" aria-hidden="true" />
-              <div className="hero-image-card media-frame group relative overflow-hidden rounded-[1.5rem] border border-white/35 bg-card shadow-card-hover">
-                  <img
-                    src={heroEspecialista}
-                    alt="Especialista da P&J Prev pronta para orientar"
-                    width={1122}
-                    height={1402}
-                    decoding="async"
-                    fetchPriority="high"
-                    className="hero-primary-image h-[500px] w-full object-cover object-[64%_center] transition-transform duration-700 ease-out group-hover:scale-[1.018] sm:h-[620px] sm:object-[68%_center] md:h-[76svh] md:max-h-[760px] lg:min-h-[610px]"
-                  />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#071b2c]/80 via-[#071b2c]/20 to-transparent" />
-                  <div className="hero-trust-card absolute bottom-5 left-5 right-5 rounded-xl border border-white/25 bg-card/92 p-4 shadow-card-hover backdrop-blur-xl sm:left-auto sm:right-6 sm:w-[300px]">
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/15 text-primary">
-                        <Check className="h-4 w-4" />
-                      </span>
-                      <div>
-                        <p className="font-serif text-sm font-semibold text-foreground">Análise 100% gratuita</p>
-                        <p className="text-xs text-muted-foreground">Resposta em poucos minutos</p>
-                      </div>
-                    </div>
-                  </div>
-              </div>
+        <div className="relative mx-auto flex min-h-[calc(100svh-73px)] w-full max-w-7xl items-center px-4 pb-36 pt-16 sm:px-6 sm:pb-40 lg:px-8 lg:py-24 lg:pb-44">
+          <div className="animate-fade-in-up max-w-2xl md:w-[54%] lg:w-[52%]">
+            <span className="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-white/70">
+              <span className="h-px w-9 bg-white/50" /> Orientação especializada
+            </span>
+            <h1 className="font-serif text-[2.45rem] font-semibold leading-[1.03] tracking-[-0.03em] text-balance text-white sm:text-5xl lg:text-[4rem]">
+              Seu direito merece ser <span className="text-[#9fc7e2]">compreendido com clareza.</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-7 text-white/75 sm:text-lg">
+              Análise inicial gratuita para gestantes, mães, MEIs, autônomas e seguradas do INSS, com atendimento humano em todo o Brasil.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <button onClick={() => openFlow("hero")}
+                className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 text-base font-semibold text-primary shadow-card-hover transition-colors hover:bg-[#eaf3f8] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary">
+                Fazer análise gratuita <ChevronRight className="h-4 w-4" />
+              </button>
+              <button onClick={() => scrollTo("como-funciona")}
+                className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-lg border border-white/30 bg-white/5 px-6 py-3.5 text-base font-medium text-white backdrop-blur-sm transition-colors hover:border-white/50 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white">
+                Como funciona <ChevronRight className="h-4 w-4" />
+              </button>
             </div>
+            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-white/15 pt-5 text-sm text-white/70">
+              <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-[#9fc7e2]" /> Análise gratuita</span>
+              <span className="flex items-center gap-1.5"><Clock className="h-4 w-4 text-[#9fc7e2]" /> Orientação objetiva</span>
+              <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4 text-[#9fc7e2]" /> Todo o Brasil</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="hero-quick-panel relative z-20 mx-auto -mt-28 w-[calc(100%-2rem)] max-w-6xl translate-y-16 overflow-hidden rounded-2xl border border-white/70 bg-card text-foreground shadow-[0_28px_70px_-34px_rgba(5,25,42,0.55)] sm:w-[calc(100%-3rem)] lg:grid lg:grid-cols-[0.72fr_1.55fr_auto] lg:items-stretch">
+          <div className="flex flex-col justify-center bg-secondary/65 p-6 sm:p-7">
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Comece por aqui</span>
+            <p className="mt-2 font-serif text-xl font-semibold leading-snug">Entenda seu caso em poucos passos</p>
+          </div>
+          <div className="grid divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            {[
+              { icon: FileText, step: "01", label: "Conte sua situação" },
+              { icon: Search, step: "02", label: "Receba uma análise" },
+              { icon: Shield, step: "03", label: "Veja os próximos passos" },
+            ].map(({ icon: Icon, step, label }) => (
+              <div key={step} className="flex items-center gap-3 p-5 sm:flex-col sm:items-start sm:justify-center sm:p-6">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary"><Icon className="h-4 w-4" /></span>
+                <div><span className="text-[10px] font-bold tracking-[0.16em] text-primary/60">ETAPA {step}</span><p className="mt-0.5 text-sm font-semibold text-foreground">{label}</p></div>
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center p-5 sm:p-6">
+            <button onClick={() => openFlow("hero_quick_panel")} className="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-button hover:bg-primary/92 lg:w-auto">
+              Iniciar agora <ChevronRight className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </section>
 
       {/* ═══════ QUEM TEM DIREITO ═══════ */}
-      <section id="quem-tem-direito" className="py-20 sm:py-24 lg:py-28" ref={whoRef}>
+      <section id="quem-tem-direito" className="pb-20 pt-36 sm:pb-24 sm:pt-40 lg:pb-28 lg:pt-44" ref={whoRef}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <span className="mb-3 inline-block text-sm font-medium text-primary">Quem pode receber?</span>
