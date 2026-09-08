@@ -471,13 +471,14 @@ const Index = () => {
                 <div className="team-value"><strong>Especializado</strong><span>Foco previdenciário</span></div>
               </div>
             </div>
-            <div className="reveal-stagger team-gallery">
-              <div className="reveal-item media-frame team-photo team-photo-primary group">
-                <img src={equipeAtendimento} alt="Equipe de atendimento da P&J Prev reunida" loading="lazy" decoding="async" width={456} height={407} className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
+            <div className="reveal-item team-composition group" role="group" aria-label="Equipe P&J Prev">
+              <div className="media-frame team-composition-main">
+                <img src={equipeAtendimento} alt="Equipe de atendimento da P&J Prev reunida" loading="lazy" decoding="async" width={456} height={407} className="h-full w-full object-cover object-[center_38%]" />
               </div>
-              <div className="reveal-item media-frame team-photo team-photo-secondary group">
-                <img src={equipeAcolhimento} alt="Profissionais da P&J Prev em momento de acolhimento" loading="lazy" decoding="async" width={418} height={454} className="h-full w-full object-cover object-[center_42%] transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
+              <div className="media-frame team-composition-panel">
+                <img src={equipeAcolhimento} alt="Profissionais da P&J Prev em momento de acolhimento" loading="lazy" decoding="async" width={418} height={454} className="h-full w-full object-cover object-[center_38%]" />
               </div>
+              <span className="team-composition-badge"><Users className="h-4 w-4" aria-hidden="true" /> Equipe P&amp;J Prev</span>
             </div>
           </div>
         </div>
