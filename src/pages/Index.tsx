@@ -339,9 +339,9 @@ const Index = () => {
       </section>
 
       {/* ═══════ QUEM TEM DIREITO ═══════ */}
-      <section id="quem-tem-direito" data-experience-scene="clareza" data-scene-direction="left" data-experience-index="02" className="experience-scene pb-20 pt-36 sm:pb-24 sm:pt-40 lg:pb-28 lg:pt-44" ref={whoRef}>
+      <section id="quem-tem-direito" data-experience-scene="clareza" data-scene-direction="left" data-experience-index="02" className="experience-scene pb-14 pt-28 sm:pb-20 sm:pt-36 lg:pb-24 lg:pt-40" ref={whoRef}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-5 border-b border-border pb-9 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+          <div className="grid gap-3 border-b border-border pb-6 sm:gap-5 sm:pb-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
             <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Quem pode receber?</span>
             <div>
             <h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">
@@ -351,7 +351,7 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="reveal-stagger mt-10 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          <div className="reveal-stagger mt-7 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-9 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { icon: FileText, title: "Carteira assinada", desc: "Trabalhou de carteira assinada antes de engravidar ou durante a gestação" },
               { icon: Search, title: "Desempregada", desc: "Ficou desempregada durante a gestação e ainda contribuiu recentemente" },
@@ -361,12 +361,12 @@ const Index = () => {
               { icon: Award, title: "Segurada especial", desc: "Trabalhadora rural ou pescadora artesanal" },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title}
-                className="reveal-item group bg-card p-7 transition-colors duration-300 hover:bg-secondary/65 sm:p-8">
-                <span className="mb-5 flex h-10 w-10 items-center justify-center rounded-full border border-primary/20 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                className="reveal-item group grid grid-cols-[auto_1fr] gap-x-4 bg-card p-5 transition-colors duration-300 hover:bg-secondary/65 sm:block sm:p-7">
+                <span className="row-span-2 flex h-10 w-10 items-center justify-center rounded-full border border-primary/20 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground sm:mb-4">
                   <Icon className="h-5 w-5" />
                 </span>
                 <h3 className="font-serif text-lg font-semibold text-foreground">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground sm:mt-2">{desc}</p>
               </div>
             ))}
           </div>
@@ -374,29 +374,29 @@ const Index = () => {
       </section>
 
       {/* ═══════ COMO FUNCIONA ═══════ */}
-      <section id="como-funciona" data-experience-scene="agilidade" data-scene-direction="right" data-experience-index="03" className="experience-scene bg-[#0d2538] py-20 text-primary-foreground sm:py-24 lg:py-28" ref={howRef}>
+      <section id="como-funciona" data-experience-scene="agilidade" data-scene-direction="right" data-experience-index="03" className="experience-scene bg-[#0d2538] py-14 text-primary-foreground sm:py-20 lg:py-24" ref={howRef}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
+          <div className="grid gap-8 sm:gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-14">
           <div className="max-w-xl lg:sticky lg:top-28 lg:self-start">
             <span className="mb-4 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground/60"><span className="h-px w-8 bg-white/30" /> Passo a passo</span>
             <h2 className="font-serif text-3xl font-semibold leading-tight text-balance text-primary-foreground sm:text-4xl">
               Um processo claro, conduzido com atenção
             </h2>
             <p className="mt-5 leading-7 text-primary-foreground/65">Você fornece as informações iniciais e nossa equipe orienta os próximos passos com transparência.</p>
-            <button onClick={() => openFlow("como_funciona")} className="mt-7 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/5 px-5 text-sm font-semibold text-white hover:bg-white/10">Iniciar análise <ChevronRight className="h-4 w-4" /></button>
+            <button onClick={() => openFlow("como_funciona")} className="mt-5 inline-flex min-h-[46px] items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/5 px-5 text-sm font-semibold text-white hover:bg-white/10 sm:mt-7">Iniciar análise <ChevronRight className="h-4 w-4" /></button>
           </div>
 
-          <div className="reveal-stagger grid gap-4">
+          <div className="reveal-stagger grid gap-3 sm:gap-4">
             {[
               { step: "1", title: "Faça o teste gratuito", desc: "Responda algumas perguntas simples sobre sua situação" },
               { step: "2", title: "Análise personalizada", desc: "Nossa equipe verifica se você tem direito ao benefício" },
               { step: "3", title: "Acompanhamento do pedido", desc: "Você recebe orientação e acompanhamento durante as etapas aplicáveis ao seu caso" },
             ].map(({ step, title, desc }) => (
-              <div key={step} className="reveal-item group grid gap-5 rounded-xl border border-white/10 bg-white/[0.045] px-6 py-7 backdrop-blur-sm transition-colors hover:bg-white/[0.07] sm:grid-cols-[auto_1fr] sm:items-center sm:p-8">
-                <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-white/10 font-serif text-lg font-semibold text-primary-foreground">
+              <div key={step} className="reveal-item group grid grid-cols-[auto_1fr] items-start gap-4 rounded-xl border border-white/10 bg-white/[0.045] p-4 backdrop-blur-sm transition-colors hover:bg-white/[0.07] sm:items-center sm:gap-5 sm:p-6">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 font-serif text-base font-semibold text-primary-foreground sm:h-12 sm:w-12">
                   {step}
                 </span>
-                <div><h3 className="font-serif text-xl font-semibold text-primary-foreground">{title}</h3><p className="mt-2 text-sm leading-6 text-primary-foreground/60">{desc}</p></div>
+                <div><h3 className="font-serif text-lg font-semibold leading-tight text-primary-foreground sm:text-xl">{title}</h3><p className="mt-1.5 text-sm leading-5 text-primary-foreground/60 sm:mt-2 sm:leading-6">{desc}</p></div>
               </div>
             ))}
           </div>
@@ -405,9 +405,9 @@ const Index = () => {
       </section>
 
       {/* ═══════ GALERIA MATERNIDADE ═══════ */}
-      <section id="acolhimento" data-experience-scene="acolhimento" data-scene-direction="left" data-experience-index="04" className="experience-scene py-16 sm:py-20 lg:py-24" ref={galleryRef}>
+      <section id="acolhimento" data-experience-scene="acolhimento" data-scene-direction="left" data-experience-index="04" className="experience-scene py-14 sm:py-[4.5rem] lg:py-20" ref={galleryRef}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="mb-12 grid gap-4 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+          <div className="mb-8 grid gap-3 sm:mb-10 sm:gap-4 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
             <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Maternidade</span>
             <div><h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">
               Cada momento merece ser vivido com tranquilidade
@@ -455,7 +455,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ EQUIPE ═══════ */}
-      <section id="equipe" data-experience-scene="autoridade" data-scene-direction="right" data-experience-index="05" className="experience-scene team-section border-y border-border/70 bg-[#f3f6f8] py-16 sm:py-24 lg:py-28" ref={teamRef}>
+      <section id="equipe" data-experience-scene="autoridade" data-scene-direction="right" data-experience-index="05" className="experience-scene team-section border-y border-border/70 bg-[#f3f6f8] py-14 sm:py-20 lg:py-24" ref={teamRef}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
             <div className="max-w-xl">
@@ -484,9 +484,9 @@ const Index = () => {
       </section>
 
       {/* ═══════ INSTAGRAM ═══════ */}
-      <section id="instagram" className="py-16 sm:py-20 lg:py-24" ref={instagramRef}>
+      <section id="instagram" className="py-14 sm:py-[4.5rem] lg:py-20" ref={instagramRef}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="flex flex-col gap-6 border-b border-border pb-9 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex flex-col gap-5 border-b border-border pb-7 sm:flex-row sm:items-end sm:justify-between sm:pb-8">
             <div className="max-w-2xl">
               <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-primary"><Instagram className="h-4 w-4" /> Acompanhe nosso dia a dia</span>
               <h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">Informação e acolhimento no Instagram</h2>
@@ -496,15 +496,15 @@ const Index = () => {
               <Instagram className="h-5 w-5" /> Seguir @pejprev_ <ExternalLink className="h-4 w-4" />
             </a>
           </div>
-          <div className="mt-10 grid overflow-hidden rounded-2xl border border-border bg-card shadow-card lg:grid-cols-[1.05fr_0.95fr]">
-            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_clicked", { source: "instagram_editorial" })} className="media-frame group relative min-h-[420px] overflow-hidden bg-muted focus-visible:ring-2 focus-visible:ring-ring sm:min-h-[540px]">
+          <div className="instagram-editorial mt-8 grid overflow-hidden rounded-2xl border border-border bg-card shadow-card sm:mt-9 lg:grid-cols-[1.05fr_0.95fr]">
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_clicked", { source: "instagram_editorial" })} className="media-frame group relative min-h-[300px] overflow-hidden bg-muted focus-visible:ring-2 focus-visible:ring-ring sm:min-h-[420px] lg:min-h-[460px]">
               <img src={atendimentoDigital} alt="Especialista da P&J Prev em atendimento digital" loading="lazy" decoding="async" width={1122} height={1402} className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
               <span className="absolute inset-0 bg-gradient-to-t from-foreground/55 via-transparent to-transparent" />
               <span className="absolute bottom-5 left-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-foreground/55 px-4 py-2 text-sm font-medium text-white backdrop-blur-md">
                 <Instagram className="h-4 w-4" /> Bastidores do atendimento
               </span>
             </a>
-            <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
+            <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
               <span className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Conteúdo responsável</span>
               <h3 className="mt-4 font-serif text-2xl font-semibold leading-snug text-foreground sm:text-3xl">Informação clara também aproxima</h3>
               <p className="mt-4 leading-7 text-muted-foreground">Acompanhe orientações, dúvidas frequentes e os bastidores de uma equipe que trata cada história com atenção.</p>
@@ -517,8 +517,8 @@ const Index = () => {
       </section>
 
       {/* ═══════ FAQ ═══════ */}
-      <section id="duvidas" data-experience-scene="seguranca" data-scene-direction="left" data-experience-index="06" className="experience-scene bg-secondary/50 py-20 sm:py-24 lg:py-28" ref={faqRef}>
-        <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.68fr_1.32fr] lg:gap-16">
+      <section id="duvidas" data-experience-scene="seguranca" data-scene-direction="left" data-experience-index="06" className="experience-scene bg-secondary/50 py-14 sm:py-20 lg:py-24" ref={faqRef}>
+        <div className="mx-auto grid w-full max-w-6xl gap-7 px-4 sm:gap-10 sm:px-6 lg:grid-cols-[0.68fr_1.32fr] lg:gap-14">
           <div className="max-w-md lg:sticky lg:top-28 lg:self-start">
             <span className="mb-4 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Dúvidas frequentes</span>
             <h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">
@@ -532,7 +532,7 @@ const Index = () => {
               <div key={i} className="reveal-item overflow-hidden rounded-xl border border-border bg-card shadow-card">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="flex min-h-[56px] w-full items-center justify-between gap-4 rounded-xl p-5 text-left transition-colors hover:bg-secondary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="flex min-h-[52px] w-full items-center justify-between gap-3 rounded-xl p-4 text-left transition-colors hover:bg-secondary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:p-5"
                 >
                   <span className="flex items-center gap-3">
                     <HelpCircle className="h-5 w-5 shrink-0 text-primary" />
@@ -550,9 +550,9 @@ const Index = () => {
       </section>
 
       {/* ═══════ FORMULÁRIO ═══════ */}
-      <section id="formulario" data-experience-scene="compromisso" data-scene-direction="right" className="experience-scene bg-[#f3f6f8] py-20 sm:py-24 lg:py-28" ref={formRef}>
+      <section id="formulario" data-experience-scene="compromisso" data-scene-direction="right" className="experience-scene bg-[#f3f6f8] py-14 sm:py-20 lg:py-24" ref={formRef}>
         <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
-          <div className="grid gap-4 border-b border-border pb-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+          <div className="grid gap-3 border-b border-border pb-6 sm:gap-4 sm:pb-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
             <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Atendimento</span>
             <div><h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">
               Como podemos te ajudar hoje?
@@ -563,7 +563,7 @@ const Index = () => {
           {/* Formulário Respondi incorporado */}
           <div
             id="formulario-respondi"
-            className="relative mt-10 overflow-hidden rounded-2xl border border-primary/15 bg-card p-2 shadow-[0_24px_65px_-38px_rgba(8,42,68,0.45)] sm:p-5"
+            className="relative mt-7 overflow-hidden rounded-2xl border border-primary/15 bg-card p-2 shadow-[0_24px_65px_-38px_rgba(8,42,68,0.45)] sm:mt-9 sm:p-5"
             onPointerDown={() => { trackEvent("form_started", { source: "secao_formulario" }); }}
           >
             <div className="pointer-events-none absolute inset-x-8 top-0 h-20 rounded-full bg-primary/10 blur-3xl" />
@@ -605,22 +605,22 @@ const Index = () => {
 
 
       {/* ═══════ PROVA SOCIAL ═══════ */}
-      <section className="bg-card py-20 sm:py-24 lg:py-28" ref={socialRef}>
+      <section className="bg-card py-14 sm:py-20 lg:py-24" ref={socialRef}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="grid gap-4 border-b border-border pb-9 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+          <div className="grid gap-3 border-b border-border pb-7 sm:gap-4 sm:pb-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
             <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Depoimentos</span>
             <h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">
               Experiências de quem já foi atendida
             </h2>
           </div>
 
-          <div className="reveal-stagger mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="reveal-stagger mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { quote: "Recebi meu benefício e veio em uma boa hora. Gratidão por tudo!", name: "Natanea Maria", stars: 5 },
               { quote: "Recebi muito antes do esperado. Atendimento excelente e muito carinhoso!", name: "Paola Machado", stars: 5 },
               { quote: "Me ajudaram muito, valeu a pena. Recomendo para todas as mamães!", name: "Heloisa Santos", stars: 5 },
             ].map(({ quote, name, stars }) => (
-              <div key={name} className="reveal-item relative rounded-xl border border-border bg-[#f8fafb] px-7 py-7 shadow-card transition-shadow hover:shadow-card-hover">
+              <div key={name} className="reveal-item relative rounded-xl border border-border bg-[#f8fafb] p-5 shadow-card transition-shadow hover:shadow-card-hover sm:p-6">
                 <span className="absolute right-6 top-4 font-serif text-5xl leading-none text-primary/10">“</span>
                 <div className="mb-3 flex gap-0.5">
                   {Array.from({ length: stars }).map((_, i) => (
@@ -636,7 +636,7 @@ const Index = () => {
       </section>
 
       {/* ═══════ CTA FINAL ═══════ */}
-      <section className="relative overflow-hidden bg-[#0d2538] py-20 sm:py-24 lg:py-28" ref={ctaRef}>
+      <section className="relative overflow-hidden bg-[#0d2538] py-14 sm:py-20 lg:py-24" ref={ctaRef}>
         <div className="pointer-events-none absolute -right-32 -top-40 h-96 w-96 rounded-full border border-white/10" />
         <div className="pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full border border-white/10" />
         <div className="relative mx-auto w-full max-w-3xl px-4 sm:px-6 text-center">
@@ -647,7 +647,7 @@ const Index = () => {
             Faça uma análise inicial gratuita e receba uma orientação clara sobre os próximos passos do seu atendimento.
           </p>
           <button onClick={() => openFlow("cta_final")}
-            className="mt-8 inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg bg-card px-8 py-4 text-base font-semibold text-primary shadow-card-hover transition-colors duration-200 hover:bg-secondary">
+            className="mt-6 inline-flex min-h-[50px] items-center justify-center gap-2 rounded-lg bg-card px-7 py-3.5 text-base font-semibold text-primary shadow-card-hover transition-colors duration-200 hover:bg-secondary sm:mt-8">
             Comece por aqui
             <ChevronRight className="h-4 w-4" />
           </button>
@@ -656,10 +656,10 @@ const Index = () => {
       </section>
 
       {/* ═══════ LOCALIZAÇÃO ═══════ */}
-      <section id="localizacao" className="py-16 sm:py-20 lg:py-24" ref={locationRef}>
+      <section id="localizacao" className="py-14 sm:py-[4.5rem] lg:py-20" ref={locationRef}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="grid min-w-0 overflow-hidden rounded-2xl border border-border bg-card shadow-card-hover lg:grid-cols-[0.68fr_1.32fr]">
-            <div className="flex min-w-0 flex-col justify-center p-7 sm:p-10">
+            <div className="flex min-w-0 flex-col justify-center p-6 sm:p-8">
               <span className="mb-3 inline-flex items-center gap-2 text-sm font-medium text-primary"><MapPin className="h-4 w-4" /> Onde estamos</span>
               <h2 className="font-serif text-2xl font-semibold leading-snug text-balance text-foreground sm:text-3xl">P&J Prev em Recife</h2>
               <p className="mt-4 text-lg leading-relaxed text-muted-foreground">Encontre nossa equipe e trace sua rota pelo Google Maps.</p>
@@ -667,7 +667,7 @@ const Index = () => {
                 Abrir no Google Maps <ExternalLink className="h-4 w-4" />
               </a>
             </div>
-            <div className="aspect-[4/3] min-h-80 min-w-0 bg-muted lg:aspect-auto lg:min-h-[430px]">
+            <div className="aspect-[16/10] min-h-[250px] min-w-0 bg-muted sm:min-h-[320px] lg:aspect-auto lg:min-h-[390px]">
               <iframe src={MAP_EMBED_URL} title="Localização da P&J Prev no Google Maps" width="600" height="450" className="h-full w-full border-0" allowFullScreen loading="lazy" referrerPolicy="strict-origin-when-cross-origin" />
             </div>
           </div>
