@@ -415,9 +415,9 @@ const Index = () => {
             <p className="mt-3 text-muted-foreground">Orientação para que você entenda a burocracia e possa focar no que importa.</p></div>
           </div>
 
-          <div className="reveal-stagger grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-[1.12fr_0.88fr] lg:gap-8">
-            <div className="reveal-item media-frame group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow duration-300 hover:shadow-card-hover lg:mt-16">
-              <div className="w-full overflow-hidden bg-muted">
+          <div className="reveal-stagger maternity-card-grid">
+            <article className="reveal-item media-frame maternity-card group">
+              <div className="maternity-card-media">
                 <img
                   src={gestanteSemCarteira}
                   alt="Gestante conhecendo seus direitos ao salário-maternidade"
@@ -425,16 +425,16 @@ const Index = () => {
                   decoding="async"
                   width={1122}
                   height={1402}
-                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-[54%_center] transition-transform duration-700 ease-out group-hover:scale-[1.025] sm:object-center"
+                  className="maternity-card-image object-[54%_center] sm:object-center"
                 />
               </div>
-              <div className="flex-1 bg-card p-5 sm:p-6">
-                <h3 className="font-serif text-base font-semibold text-foreground">Mesmo sem carteira assinada</h3>
-                <p className="mt-1 text-sm text-muted-foreground">Seu histórico de contribuições pode preservar o direito ao benefício.</p>
+              <div className="maternity-card-copy">
+                <h3>Mesmo sem carteira assinada</h3>
+                <p>Seu histórico de contribuições pode preservar o direito ao benefício.</p>
               </div>
-            </div>
-            <div className="reveal-item media-frame group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-shadow duration-300 hover:shadow-card-hover">
-              <div className="w-full overflow-hidden bg-muted">
+            </article>
+            <article className="reveal-item media-frame maternity-card group">
+              <div className="maternity-card-media">
                 <img
                   src={duvidasBeneficio}
                   alt="Mãe com bebê esclarecendo dúvidas sobre o benefício"
@@ -442,41 +442,41 @@ const Index = () => {
                   decoding="async"
                   width={1122}
                   height={1402}
-                  className="mx-auto block aspect-[4/5] h-auto w-full object-cover object-[52%_center] transition-transform duration-700 ease-out group-hover:scale-[1.025] sm:object-center"
+                  className="maternity-card-image object-[52%_center] sm:object-center"
                 />
               </div>
-              <div className="flex-1 bg-card p-5 sm:p-6">
-                <h3 className="font-serif text-base font-semibold text-foreground">Ainda pode existir um caminho</h3>
-                <p className="mt-1 text-sm text-muted-foreground">Cada caso tem prazos e condições próprias. A análise inicial ajuda a entender isso.</p>
+              <div className="maternity-card-copy">
+                <h3>Ainda pode existir um caminho</h3>
+                <p>Cada caso tem prazos e condições próprias. A análise inicial ajuda a entender isso.</p>
               </div>
-            </div>
+            </article>
           </div>
         </div>
       </section>
 
       {/* ═══════ EQUIPE ═══════ */}
-      <section id="equipe" data-experience-scene="autoridade" data-scene-direction="right" data-experience-index="05" className="experience-scene border-y border-border/70 bg-[#f3f6f8] py-20 sm:py-24 lg:py-28" ref={teamRef}>
+      <section id="equipe" data-experience-scene="autoridade" data-scene-direction="right" data-experience-index="05" className="experience-scene team-section border-y border-border/70 bg-[#f3f6f8] py-16 sm:py-24 lg:py-28" ref={teamRef}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
+          <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
             <div className="max-w-xl">
               <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-primary">
                 <Building2 className="h-4 w-4" /> Atendimento de verdade
               </span>
-              <h2 className="font-serif text-3xl font-semibold leading-snug text-balance text-foreground sm:text-4xl">Pessoas cuidando de pessoas</h2>
-              <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+              <h2 className="font-serif text-[2rem] font-semibold leading-[1.12] text-balance text-foreground sm:text-4xl">Pessoas cuidando de pessoas</h2>
+              <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-relaxed">
                 Por trás de cada análise existe uma equipe preparada para ouvir, orientar e acompanhar cada mãe com clareza e respeito.
               </p>
-              <div className="mt-7 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border">
-                <div className="bg-card p-5"><strong className="block font-serif text-xl text-primary">Humano</strong><span className="mt-1 block text-xs text-muted-foreground">Atendimento próximo</span></div>
-                <div className="bg-card p-5"><strong className="block font-serif text-xl text-primary">Especializado</strong><span className="mt-1 block text-xs text-muted-foreground">Foco previdenciário</span></div>
+              <div className="team-values mt-7">
+                <div className="team-value"><strong>Humano</strong><span>Atendimento próximo</span></div>
+                <div className="team-value"><strong>Especializado</strong><span>Foco previdenciário</span></div>
               </div>
             </div>
-            <div className="reveal-stagger grid gap-4 sm:grid-cols-[0.85fr_1.15fr]">
-              <div className="reveal-item media-frame group overflow-hidden rounded-xl border border-border bg-card shadow-card">
-                <img src={equipeAtendimento} alt="Equipe de atendimento da P&J Prev reunida" loading="lazy" decoding="async" width={456} height={407} className="h-72 w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.025] sm:h-80" />
+            <div className="reveal-stagger team-gallery">
+              <div className="reveal-item media-frame team-photo team-photo-primary group">
+                <img src={equipeAtendimento} alt="Equipe de atendimento da P&J Prev reunida" loading="lazy" decoding="async" width={456} height={407} className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
               </div>
-              <div className="reveal-item media-frame group overflow-hidden rounded-xl border border-border bg-card shadow-card">
-                <img src={equipeAcolhimento} alt="Profissionais da P&J Prev em momento de acolhimento" loading="lazy" decoding="async" width={418} height={454} className="h-72 w-full object-cover object-[center_42%] transition-transform duration-700 ease-out group-hover:scale-[1.025] sm:h-80" />
+              <div className="reveal-item media-frame team-photo team-photo-secondary group">
+                <img src={equipeAcolhimento} alt="Profissionais da P&J Prev em momento de acolhimento" loading="lazy" decoding="async" width={418} height={454} className="h-full w-full object-cover object-[center_42%] transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
               </div>
             </div>
           </div>
