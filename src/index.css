@@ -142,6 +142,14 @@
   transition: transform 750ms cubic-bezier(0.22, 1, 0.36, 1), filter 750ms ease;
 }
 
+.maternity-card-image-pregnant {
+  object-position: 57% 58%;
+}
+
+.maternity-card-image-mother {
+  object-position: 52% 30%;
+}
+
 .maternity-card-copy {
   min-height: 8.7rem;
   padding: clamp(1.25rem, 2.2vw, 1.75rem);
@@ -254,9 +262,13 @@
 .team-composition-panel {
   right: 0;
   bottom: 0;
-  width: 62%;
-  height: 14rem;
+  width: 58%;
+  height: 15.5rem;
   transform: translateZ(34px);
+}
+
+.team-composition-panel img {
+  object-position: center 17%;
 }
 
 .team-composition-badge {
@@ -324,9 +336,18 @@
   .team-composition-panel {
     right: 0.25rem;
     bottom: 0.3rem;
-    width: 76%;
-    height: 46%;
+    width: 68%;
+    height: 55%;
     transform: translateZ(24px);
+  }
+
+
+  .maternity-card-image-pregnant {
+    object-position: 58% 60%;
+  }
+
+  .maternity-card-image-mother {
+    object-position: 54% 24%;
   }
 
   .team-composition-badge {

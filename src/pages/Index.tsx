@@ -425,7 +425,7 @@ const Index = () => {
                   decoding="async"
                   width={1122}
                   height={1402}
-                  className="maternity-card-image object-[54%_center] sm:object-center"
+                  className="maternity-card-image maternity-card-image-pregnant"
                 />
               </div>
               <div className="maternity-card-copy">
@@ -442,7 +442,7 @@ const Index = () => {
                   decoding="async"
                   width={1122}
                   height={1402}
-                  className="maternity-card-image object-[52%_center] sm:object-center"
+                  className="maternity-card-image maternity-card-image-mother"
                 />
               </div>
               <div className="maternity-card-copy">
