@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import {
   FileText, Search, Heart, ChevronDown, ChevronRight,
   Mail, Phone, MapPin, Baby, Shield, Clock,
@@ -12,10 +12,11 @@ const duvidasBeneficio = "/images/mae-bebe-editorial-v2.webp";
 const equipeAtendimento = "/images/equipe-atendimento.webp";
 const equipeAcolhimento = "/images/equipe-acolhimento.webp";
 const atendimentoDigital = "/images/atendimento-digital-v2.webp";
-import StartFlowDialog from "@/components/StartFlowDialog";
 import { trackEvent } from "@/lib/tracking";
 import { loadPixels, fireConversion, listenForConsent } from "@/lib/pixels";
 import { Link } from "react-router-dom";
+
+const StartFlowDialog = lazy(() => import("@/components/StartFlowDialog"));
 
 /* ─── scroll-reveal hook ─── */
 const useScrollReveal = () => {
@@ -116,24 +117,31 @@ const Index = () => {
   /* Motor leve da visita 360º: apenas CSS variables, sem WebGL pesado. */
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const compactViewport = window.matchMedia("(max-width: 767px)").matches;
     const scenes = Array.from(document.querySelectorAll<HTMLElement>("[data-experience-scene]"));
     if (!scenes.length) return;
+    const visibleScenes = new Set<HTMLElement>();
 
     const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const scene = entry.target as HTMLElement;
+        if (entry.isIntersecting) visibleScenes.add(scene);
+        else visibleScenes.delete(scene);
+      });
       const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
       const key = (visible?.target as HTMLElement | undefined)?.dataset.experienceScene;
       if (key) setActiveScene(key);
     }, { threshold: [0.25, 0.45, 0.65], rootMargin: "-12% 0px -28% 0px" });
 
     scenes.forEach(scene => observer.observe(scene));
-    if (reducedMotion) return () => observer.disconnect();
+    if (reducedMotion || compactViewport) return () => observer.disconnect();
 
     let frame = 0;
     const updateJourney = () => {
       const viewport = window.innerHeight;
       const scrollRange = Math.max(document.documentElement.scrollHeight - viewport, 1);
       document.documentElement.style.setProperty("--journey-progress", String(window.scrollY / scrollRange));
-      scenes.forEach(scene => {
+      visibleScenes.forEach(scene => {
         const rect = scene.getBoundingClientRect();
         const raw = (rect.top + rect.height / 2 - viewport / 2) / Math.max(viewport + rect.height, 1);
         scene.style.setProperty("--scene-progress", String(Math.max(-1, Math.min(1, raw))));
@@ -157,7 +165,7 @@ const Index = () => {
 
 
 
-  /* Carrega o formulário externo após o conteúdo principal, sem bloquear a página. */
+  /* Carrega o formulário quando a cliente se aproxima dele, sem disputar o carregamento inicial. */
   useEffect(() => {
     if (document.querySelector("#respondi_src")) return;
     const loadEmbed = () => {
@@ -168,8 +176,19 @@ const Index = () => {
       script.src = "https://embed.respondi.app/embed.js";
       document.body.appendChild(script);
     };
-    const timer = window.setTimeout(loadEmbed, 450);
-    return () => window.clearTimeout(timer);
+    const target = document.getElementById("formulario");
+    const observer = target ? new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        loadEmbed();
+        observer.disconnect();
+      }
+    }, { rootMargin: "900px 0px" }) : null;
+    if (target && observer) observer.observe(target);
+    const fallback = window.setTimeout(loadEmbed, 7000);
+    return () => {
+      observer?.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, []);
 
   const navLinks = [
@@ -541,7 +560,7 @@ const Index = () => {
                   </span>
                   <ChevronDown className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 ${openFaq === i ? "rotate-180" : ""}`} />
                 </button>
-                <div className={`overflow-hidden transition-all duration-[360ms] ease-out ${openFaq === i ? "max-h-60 pb-5 opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className={`overflow-hidden transition-all [transition-duration:360ms] ease-out ${openFaq === i ? "max-h-60 pb-5 opacity-100" : "max-h-0 opacity-0"}`}>
                   <p className="px-5 pl-[3.25rem] text-sm leading-relaxed text-muted-foreground">{faq.a}</p>
                 </div>
               </div>
@@ -571,7 +590,7 @@ const Index = () => {
             <div
               data-respondi-container=""
               data-respondi-mode="regular"
-              data-respondi-src="https://form.respondi.app/aymmBnHN"
+              data-respondi-src="https://form.respondi.app/Dg1sDMTh"
               data-respondi-width="100%"
               data-respondi-height="600px"
               className="relative min-h-[600px] w-full overflow-hidden rounded-xl"
@@ -606,7 +625,7 @@ const Index = () => {
 
 
       {/* ═══════ PROVA SOCIAL ═══════ */}
-      <section className="bg-card py-14 sm:py-20 lg:py-24" ref={socialRef}>
+      <section id="depoimentos" className="bg-card py-14 sm:py-20 lg:py-24" ref={socialRef}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="grid gap-3 border-b border-border pb-7 sm:gap-4 sm:pb-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
             <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary/50" /> Depoimentos</span>
@@ -615,7 +634,7 @@ const Index = () => {
             </h2>
           </div>
 
-          <div className="reveal-stagger mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="testimonial-track reveal-stagger mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { quote: "Recebi meu benefício e veio em uma boa hora. Gratidão por tudo!", name: "Natanea Maria", stars: 5 },
               { quote: "Recebi muito antes do esperado. Atendimento excelente e muito carinhoso!", name: "Paola Machado", stars: 5 },
@@ -724,14 +743,18 @@ const Index = () => {
       </footer>
 
       {/* ═══════ CTA FIXO MOBILE ═══════ */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 p-3 backdrop-blur-sm sm:hidden">
+      <div className="mobile-cta fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 backdrop-blur-sm sm:hidden">
         <button onClick={() => openFlow("cta_fixo_mobile")}
-          className="min-h-[52px] w-full rounded-xl bg-gradient-hero py-4 text-base font-semibold text-primary-foreground shadow-button transition-all hover:shadow-card-hover">
+          className="w-full rounded-xl bg-gradient-hero text-sm font-semibold text-primary-foreground shadow-button transition-all hover:shadow-card-hover">
           Comece por aqui
         </button>
       </div>
 
-      <StartFlowDialog open={flowOpen} onOpenChange={setFlowOpen} source={flowSource} />
+      {flowOpen ? (
+        <Suspense fallback={null}>
+          <StartFlowDialog open={flowOpen} onOpenChange={setFlowOpen} source={flowSource} />
+        </Suspense>
+      ) : null}
     </div>
   );
 };
