@@ -271,6 +271,18 @@
   object-position: center 17%;
 }
 
+.team-composition-main-image {
+  object-position: center 34%;
+}
+
+.team-composition-panel-image {
+  object-position: center 19%;
+}
+
+.instagram-editorial-image {
+  object-position: 52% 38%;
+}
+
 .team-composition-badge {
   position: absolute;
   left: 1.25rem;
@@ -880,6 +892,128 @@
 @media (min-width: 768px) {
   section:not(#inicio) {
     content-visibility: auto;
-    contain-intrinsic-size: 800px;
+    contain-intrinsic-size: auto 680px;
   }
+}
+
+/* Premium compacto — ritmo editorial, leitura rápida e profundidade concentrada. */
+.cookie-consent {
+  bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0.9rem;
+}
+
+.cookie-consent-copy { min-width: 0; }
+.cookie-consent-actions { flex: 0 0 auto; }
+
+.mobile-cta {
+  padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom));
+}
+
+.mobile-cta button {
+  min-height: 46px;
+  padding: 0.7rem 1rem;
+}
+
+@media (max-width: 767px) {
+  /* Menos espaço vazio; cada dobra entrega conteúdo novo. */
+  #quem-tem-direito { padding-top: 6.5rem !important; padding-bottom: 2.75rem !important; }
+  #como-funciona,
+  #acolhimento,
+  #equipe,
+  #instagram,
+  #duvidas,
+  #formulario,
+  #depoimentos,
+  #localizacao { padding-top: 2.75rem !important; padding-bottom: 2.75rem !important; }
+
+  #como-funciona .reveal-stagger,
+  #duvidas .reveal-stagger { gap: 0.65rem; }
+
+  .experience-scene:not(#inicio):not(#como-funciona):not(#equipe)::before,
+  .experience-scene[data-experience-index]::after {
+    display: none;
+  }
+
+  /* Cards maternos horizontais: fotografia e mensagem cabem na mesma leitura. */
+  .maternity-card-grid { gap: 0.8rem; }
+  .maternity-card {
+    grid-template-columns: minmax(7.8rem, 42%) 1fr;
+    grid-template-rows: 1fr;
+    min-height: 10.75rem;
+    border-radius: 1rem;
+  }
+  .maternity-card-media {
+    aspect-ratio: auto;
+    min-height: 10.75rem;
+  }
+  .maternity-card-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .maternity-card-copy h3 { font-size: 1.08rem; line-height: 1.18; }
+  .maternity-card-copy p { margin-top: 0.4rem; font-size: 0.82rem; line-height: 1.45; }
+  .maternity-card-image-pregnant { object-position: 56% 55%; }
+  .maternity-card-image-mother { object-position: 52% 28%; }
+
+  /* Autoridade visual sem ocupar uma tela inteira. */
+  .team-values { margin-top: 1.25rem !important; }
+  .team-value { padding: 0.8rem 0.9rem; }
+  .team-composition {
+    height: clamp(18.75rem, 82vw, 21.5rem);
+    margin-top: -0.25rem;
+  }
+  .team-composition-main { height: 68%; }
+  .team-composition-panel { width: 62%; height: 53%; }
+  .team-composition-badge { bottom: 1rem; }
+  .team-composition-main-image { object-position: center 31%; }
+  .team-composition-panel-image { object-position: center 17%; }
+
+  /* Instagram e localização deixam de parecer novas páginas dentro da página. */
+  #instagram .instagram-editorial { margin-top: 1.5rem; }
+  #instagram .instagram-editorial > a { min-height: 14rem; }
+  #instagram .instagram-editorial-image { object-position: 54% 34%; }
+  #instagram .instagram-editorial > div { padding: 1.15rem; }
+  #instagram .instagram-editorial h3 { margin-top: 0.6rem; font-size: 1.35rem; }
+  #instagram .instagram-editorial p { margin-top: 0.6rem; line-height: 1.55; }
+  #instagram .instagram-editorial a:last-child { margin-top: 1rem; }
+
+  #localizacao [class*="aspect-"] { min-height: 14rem; }
+
+  /* Depoimentos em trilho: menos altura e leitura natural pelo toque. */
+  .testimonial-track {
+    display: flex;
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+    padding-bottom: 0.5rem;
+    gap: 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .testimonial-track::-webkit-scrollbar { display: none; }
+  .testimonial-track > * {
+    flex: 0 0 min(82vw, 19rem);
+    scroll-snap-align: start;
+    padding: 1rem;
+  }
+
+  .cookie-consent {
+    bottom: calc(4.25rem + env(safe-area-inset-bottom));
+    align-items: flex-start;
+    gap: 0.55rem;
+    padding: 0.7rem;
+  }
+  .cookie-consent-copy > span { display: none; }
+  .cookie-consent-actions { align-self: center; }
+  .cookie-consent-actions a { display: none; }
+}
+
+@media (min-width: 768px) {
+  .cookie-consent { bottom: 1rem; }
 }

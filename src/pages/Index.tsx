@@ -9,8 +9,8 @@ const logo = "https://pejprevsalariomaternidade.lovable.app/assets/logo-pjprev-c
 const heroEspecialista = "/images/especialista-institucional-v2.webp";
 const gestanteSemCarteira = "/images/gestante-editorial-v2.webp";
 const duvidasBeneficio = "/images/mae-bebe-editorial-v2.webp";
-const equipeAtendimento = "/images/equipe-atendimento.webp";
-const equipeAcolhimento = "/images/equipe-acolhimento.webp";
+const equipeAtendimento = "/images/equipe-atendimento-hd.webp";
+const equipeAcolhimento = "/images/equipe-acolhimento-hd.webp";
 const atendimentoDigital = "/images/atendimento-digital-v2.webp";
 import { trackEvent } from "@/lib/tracking";
 import { loadPixels, fireConversion, listenForConsent } from "@/lib/pixels";
@@ -492,10 +492,10 @@ const Index = () => {
             </div>
             <div className="reveal-item team-composition group" role="group" aria-label="Equipe P&J Prev">
               <div className="media-frame team-composition-main">
-                <img src={equipeAtendimento} alt="Equipe de atendimento da P&J Prev reunida" loading="lazy" decoding="async" width={456} height={407} className="h-full w-full object-cover object-[center_38%]" />
+                <img src={equipeAtendimento} alt="Equipe de atendimento da P&J Prev reunida" loading="lazy" decoding="async" width={1327} height={1185} className="team-composition-main-image h-full w-full object-cover" />
               </div>
               <div className="media-frame team-composition-panel">
-                <img src={equipeAcolhimento} alt="Profissionais da P&J Prev em momento de acolhimento" loading="lazy" decoding="async" width={418} height={454} className="h-full w-full object-cover object-[center_38%]" />
+                <img src={equipeAcolhimento} alt="Profissionais da P&J Prev em momento de acolhimento" loading="lazy" decoding="async" width={1203} height={1307} className="team-composition-panel-image h-full w-full object-cover" />
               </div>
               <span className="team-composition-badge"><Users className="h-4 w-4" aria-hidden="true" /> Equipe P&amp;J Prev</span>
             </div>
@@ -518,7 +518,7 @@ const Index = () => {
           </div>
           <div className="instagram-editorial mt-8 grid overflow-hidden rounded-2xl border border-border bg-card shadow-card sm:mt-9 lg:grid-cols-[1.05fr_0.95fr]">
             <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_clicked", { source: "instagram_editorial" })} className="media-frame group relative min-h-[300px] overflow-hidden bg-muted focus-visible:ring-2 focus-visible:ring-ring sm:min-h-[420px] lg:min-h-[460px]">
-              <img src={atendimentoDigital} alt="Especialista da P&J Prev em atendimento digital" loading="lazy" decoding="async" width={1122} height={1402} className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
+              <img src={atendimentoDigital} alt="Especialista da P&J Prev em atendimento digital" loading="lazy" decoding="async" width={1122} height={1402} className="instagram-editorial-image absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
               <span className="absolute inset-0 bg-gradient-to-t from-foreground/55 via-transparent to-transparent" />
               <span className="absolute bottom-5 left-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-foreground/55 px-4 py-2 text-sm font-medium text-white backdrop-blur-md">
                 <Instagram className="h-4 w-4" /> Bastidores do atendimento
