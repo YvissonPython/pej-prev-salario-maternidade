@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import {
   FileText, Search, Heart, ChevronDown, ChevronRight,
-  Mail, Phone, MapPin, Baby, Shield, Clock,
+  Mail, MapPin, Baby, Shield, Clock,
   MessageCircle, HelpCircle, Star, Users, Award,
   Instagram, ExternalLink, Building2
 } from "lucide-react";
@@ -716,15 +716,8 @@ const Index = () => {
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-wider text-white">Contato</h3>
               <p className="mt-3 flex items-center gap-2 text-sm text-white/60">
-                <Phone className="h-4 w-4 shrink-0" /> (81) 3019-2443
-              </p>
-              <p className="mt-2 flex items-center gap-2 text-sm text-white/60">
                 <Mail className="h-4 w-4 shrink-0" /> pejprevrecife@gmail.com
               </p>
-              <a href="https://wa.me/558130192443" target="_blank" rel="noopener noreferrer"
-                className="mt-2 flex items-center gap-2 text-sm text-white hover:underline">
-                <MessageCircle className="h-4 w-4 shrink-0" /> WhatsApp
-              </a>
             </div>
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-wider text-white">CNPJ</h3>
