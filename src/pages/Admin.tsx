@@ -4,7 +4,7 @@ import {
   MousePointerClick, MessageCircle, FileText, Users, CheckCircle2, AlertTriangle,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-const logo = "https://pejprevsalariomaternidade.lovable.app/assets/logo-pjprev-circular-0AoflDRs.jpg";
+const logo = "/images/logo-pjprev-4k.webp";
 import type { Session } from "@supabase/supabase-js";
 
 type EventRow = {

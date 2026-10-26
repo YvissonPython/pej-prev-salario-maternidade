@@ -1,4 +1,4 @@
-const logo = "https://pejprevsalariomaternidade.lovable.app/assets/logo-pjprev-circular-0AoflDRs.jpg";
+const logo = "/images/logo-pjprev-4k.webp";
 
 const SimulatorHeader = () => {
   return (

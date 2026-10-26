@@ -5,7 +5,7 @@ import {
   MessageCircle, HelpCircle, Star, Users, Award,
   Instagram, ExternalLink, Building2
 } from "lucide-react";
-const logo = "https://pejprevsalariomaternidade.lovable.app/assets/logo-pjprev-circular-0AoflDRs.jpg";
+const logo = "/images/logo-pjprev-4k.webp";
 const gestanteSemCarteira = "/images/gestante-editorial-v2.webp";
 const duvidasBeneficio = "/images/mae-bebe-editorial-v2.webp";
 const equipeAtendimento = "/images/equipe-atendimento-hd.webp";

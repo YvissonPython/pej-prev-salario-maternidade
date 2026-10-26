@@ -1,6 +1,6 @@
 import { ArrowLeft, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
-const logo = "https://pejprevsalariomaternidade.lovable.app/assets/logo-pjprev-circular-0AoflDRs.jpg";
+const logo = "/images/logo-pjprev-4k.webp";
 
 type Props = { title: string; subtitle: string; children: React.ReactNode };
 
