@@ -6,7 +6,6 @@ import {
   Instagram, ExternalLink, Building2
 } from "lucide-react";
 const logo = "https://pejprevsalariomaternidade.lovable.app/assets/logo-pjprev-circular-0AoflDRs.jpg";
-const heroEspecialista = "/images/especialista-institucional-v2.webp";
 const gestanteSemCarteira = "/images/gestante-editorial-v2.webp";
 const duvidasBeneficio = "/images/mae-bebe-editorial-v2.webp";
 const equipeAtendimento = "/images/equipe-atendimento-hd.webp";
@@ -281,7 +280,6 @@ const Index = () => {
       {/* ═══════ HERO ═══════ */}
       <section id="inicio" data-experience-scene="entrada" data-scene-direction="right" data-experience-index="01" className="experience-scene hero-cinematic relative overflow-visible bg-[#071b2c] text-white" ref={heroRef}>
         <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-          <img src={heroEspecialista} alt="" width={1122} height={1402} decoding="async" fetchPriority="high" className="hero-cover-image h-full w-full object-cover object-[66%_center] md:absolute md:inset-y-0 md:right-0 md:w-[58%] md:object-[68%_center]" />
           <div className="hero-cover-overlay absolute inset-0" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0d2538] to-transparent" />
           <div className="hero-grid absolute inset-0" />
@@ -312,18 +310,24 @@ const Index = () => {
             </div>
             <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-white/15 pt-5 text-sm text-white/70">
               <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-[#9fc7e2]" /> Análise gratuita</span>
-              <span className="flex items-center gap-1.5"><Clock className="h-4 w-4 text-[#9fc7e2]" /> Orientação objetiva</span>
+              <span className="flex items-center gap-1.5"><Clock className="h-4 w-4 text-[#9fc7e2]" /> Atendimento humano</span>
               <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4 text-[#9fc7e2]" /> Todo o Brasil</span>
             </div>
           </div>
-          <div className="hero-proof-stack" aria-label="Diferenciais do atendimento">
-            <div className="hero-proof-card hero-proof-card-main">
-              <span>Atendimento</span>
-              <strong>Humano, claro e seguro.</strong>
-            </div>
-            <div className="hero-proof-card hero-proof-card-small">
-              <Shield className="h-4 w-4" />
-              <span>Análise inicial gratuita</span>
+          <div className="hero-brand-stage" aria-label="P&J Prev — atendimento previdenciário">
+            <span className="hero-brand-ribbon hero-brand-ribbon-back" aria-hidden="true" />
+            <span className="hero-brand-ribbon hero-brand-ribbon-front" aria-hidden="true" />
+            <span className="hero-brand-halo" aria-hidden="true" />
+            <div className="hero-brand-logo-wrap">
+              <img
+                src={logo}
+                alt="P&J Prev — Salário Maternidade"
+                width={1080}
+                height={1080}
+                decoding="async"
+                fetchPriority="high"
+                className="hero-brand-logo"
+              />
             </div>
           </div>
         </div>

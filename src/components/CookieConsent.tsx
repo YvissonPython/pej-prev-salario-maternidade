@@ -29,32 +29,32 @@ export default function CookieConsent() {
       role="dialog"
       aria-modal="false"
       aria-labelledby="cookie-title"
-      className="fixed inset-x-4 bottom-4 z-[100] mx-auto max-w-2xl rounded-2xl border border-border/80 bg-card/98 p-5 shadow-card-hover backdrop-blur-md sm:bottom-6 sm:p-6"
+      className="cookie-consent fixed inset-x-3 z-[100] mx-auto max-w-3xl rounded-xl border border-border/80 bg-card/98 shadow-card-hover backdrop-blur-md sm:inset-x-6"
     >
-      <div className="flex items-start gap-3.5">
+      <div className="cookie-consent-copy flex items-start gap-3">
         <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/8 text-primary">
           <ShieldCheck className="h-4 w-4" aria-hidden="true" />
         </span>
         <div>
-          <h2 id="cookie-title" className="font-serif text-base font-semibold text-foreground">
+          <h2 id="cookie-title" className="font-serif text-sm font-semibold text-foreground sm:text-base">
             Privacidade e cookies
           </h2>
-          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-            Utilizamos cookies essenciais e métricas para garantir o funcionamento do site e aprimorar sua experiência.
+          <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+            Usamos cookies essenciais e métricas para melhorar sua experiência.
           </p>
         </div>
       </div>
-      <div className="mt-5 flex flex-col-reverse gap-2.5 sm:flex-row sm:justify-end">
+      <div className="cookie-consent-actions flex items-center gap-2">
         <Link
           to="/politica-de-privacidade"
-          className="inline-flex min-h-11 items-center justify-center rounded-xl px-5 text-sm font-medium text-primary transition-colors hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring"
+          className="inline-flex min-h-10 items-center justify-center rounded-lg px-3 text-xs font-medium text-primary transition-colors hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring sm:px-4 sm:text-sm"
         >
           Ver políticas
         </Link>
         <button
           type="button"
           onClick={accept}
-          className="min-h-11 rounded-xl bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-button transition-all hover:bg-primary/92 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="min-h-10 rounded-lg bg-primary px-4 text-xs font-semibold text-primary-foreground shadow-button transition-all hover:bg-primary/92 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-sm"
         >
           Aceitar
         </button>
