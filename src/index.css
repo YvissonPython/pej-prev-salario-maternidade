@@ -486,8 +486,8 @@
 
 .hero-cover-overlay {
   background:
-    radial-gradient(circle at 82% 30%, rgba(159, 199, 226, 0.28), transparent 32%),
-    radial-gradient(circle at 96% 12%, rgba(255, 238, 214, 0.14), transparent 24%),
+    linear-gradient(90deg, rgba(4, 22, 39, 0.12), rgba(4, 22, 39, 0) 54%),
+    url('/images/hero-pjprev-abstract-v3.webp') center / cover no-repeat,
     linear-gradient(112deg, #061a2b 0%, #0a2a45 54%, #184a70 100%);
 }
 
@@ -497,7 +497,7 @@
 }
 
 .hero-grid {
-  opacity: 0.16;
+  opacity: 0.04;
   background-image:
     linear-gradient(hsl(0 0% 100% / 0.1) 1px, transparent 1px),
     linear-gradient(90deg, hsl(0 0% 100% / 0.1) 1px, transparent 1px);
@@ -539,10 +539,10 @@
   right: 2.5%;
   top: 50%;
   z-index: 5;
-  width: min(48vw, 660px);
+  width: min(43vw, 610px);
   aspect-ratio: 1;
   pointer-events: none;
-  transform: translateY(-56%);
+  transform: translateY(-55%);
   transform-style: preserve-3d;
 }
 
@@ -551,8 +551,8 @@
   inset: 12%;
   border: 1px solid hsl(0 0% 100% / 0.2);
   border-radius: 50%;
-  background: radial-gradient(circle at 36% 28%, hsl(0 0% 100% / 0.18), hsl(204 58% 72% / 0.06) 52%, transparent 72%);
-  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.22), 0 40px 90px -48px hsl(209 90% 4% / 0.82);
+  background: radial-gradient(circle at 36% 28%, hsl(0 0% 100% / 0.12), hsl(204 58% 72% / 0.045) 52%, transparent 72%);
+  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.25), 0 40px 90px -48px hsl(209 90% 4% / 0.72);
   backdrop-filter: blur(5px);
   animation: brand-breathe 8s ease-in-out infinite alternate;
 }
@@ -574,38 +574,8 @@
   object-fit: cover;
 }
 
-.hero-brand-ribbon {
-  position: absolute;
-  border: 1px solid hsl(0 0% 100% / 0.22);
-  border-radius: 54% 46% 62% 38% / 45% 58% 42% 55%;
-  background: linear-gradient(135deg, hsl(0 0% 100% / 0.14), hsl(199 72% 78% / 0.035));
-  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.18);
-  backdrop-filter: blur(8px);
-}
-
-.hero-brand-ribbon-back {
-  inset: 6% -6% 4% 16%;
-  transform: rotate(24deg) translateZ(-18px);
-  animation: ribbon-drift 11s ease-in-out infinite alternate;
-}
-
-.hero-brand-ribbon-front {
-  inset: 29% 3% -4% -2%;
-  z-index: 3;
-  transform: rotate(-18deg) translateZ(24px);
-  animation: ribbon-drift-front 9s ease-in-out infinite alternate;
-}
-
 @keyframes brand-breathe {
   to { transform: scale(1.025); opacity: 0.92; }
-}
-
-@keyframes ribbon-drift {
-  to { transform: rotate(29deg) translate3d(8px, -8px, -10px); }
-}
-
-@keyframes ribbon-drift-front {
-  to { transform: rotate(-13deg) translate3d(-6px, 8px, 30px); }
 }
 
 .hero-scroll-cue {
@@ -648,6 +618,21 @@
   border-radius: 50%;
   background: hsl(208 70% 10% / 0.22);
   filter: blur(18px);
+}
+
+.hero-step-number {
+  display: inline-flex;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: hsl(203 48% 93%);
+  color: hsl(var(--primary));
+  font-family: 'Source Serif 4', serif;
+  font-size: 22px;
+  font-weight: 700;
 }
 
 /* Jornada 360º: cada seção funciona como um ambiente com profundidade própria. */
@@ -802,20 +787,27 @@
 @media (max-width: 767px) {
   .hero-cover-overlay {
     background:
-      radial-gradient(circle at 72% 16%, rgba(159, 199, 226, 0.24), transparent 28%),
+      linear-gradient(180deg, rgba(6, 26, 43, 0.1), rgba(6, 26, 43, 0.46)),
+      url('/images/hero-pjprev-abstract-v3.webp') 65% center / cover no-repeat,
       linear-gradient(150deg, #061a2b 0%, #0b2d49 68%, #194b70 100%);
   }
 
   .hero-grid { background-size: 44px 44px; opacity: 0.1; }
   .hero-brand-stage {
-    top: 7.5rem;
-    right: -14vw;
-    width: 64vw;
-    max-width: 310px;
-    opacity: 0.42;
+    top: 8.25rem;
+    right: -16vw;
+    width: 62vw;
+    max-width: 300px;
+    opacity: 0.32;
     transform: none;
   }
   .hero-brand-logo-wrap { inset: 25%; }
+  .hero-step-number {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+    font-size: 17px;
+  }
   .hero-scroll-cue { bottom: 5.4rem; }
   .hero-orbit-one { width: 86vw; height: 86vw; left: -36vw; }
   .hero-orbit-two { display: none; }
@@ -892,8 +884,7 @@
 
   .hero-orbit,
   .hero-scroll-cue,
-  .hero-brand-halo,
-  .hero-brand-ribbon { animation: none; }
+  .hero-brand-halo { animation: none; }
 
   .experience-scene::before { display: none; }
   .experience-rail { display: none; }

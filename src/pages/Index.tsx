@@ -192,11 +192,11 @@ const Index = () => {
 
   const navLinks = [
     { label: "Início", id: "inicio" },
-    { label: "Quem tem direito", id: "quem-tem-direito" },
+    { label: "Sobre nós", id: "equipe" },
+    { label: "Nossos serviços", id: "quem-tem-direito" },
     { label: "Como funciona", id: "como-funciona" },
-    { label: "Equipe", id: "equipe" },
-    { label: "Instagram", id: "instagram" },
     { label: "Dúvidas", id: "duvidas" },
+    { label: "Contato", id: "formulario" },
   ];
 
   return (
@@ -296,7 +296,7 @@ const Index = () => {
               Seu direito merece ser <span className="text-[#9fc7e2]">compreendido com clareza.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-white/75 sm:text-lg">
-              Análise inicial gratuita para gestantes, mães, MEIs, autônomas e seguradas do INSS, com atendimento humano em todo o Brasil.
+              Atendimento previdenciário especializado para quem busca segurança, informação clara e acompanhamento humanizado em todas as etapas.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <button onClick={() => openFlow("hero")}
@@ -315,8 +315,6 @@ const Index = () => {
             </div>
           </div>
           <div className="hero-brand-stage" aria-label="P&J Prev — atendimento previdenciário">
-            <span className="hero-brand-ribbon hero-brand-ribbon-back" aria-hidden="true" />
-            <span className="hero-brand-ribbon hero-brand-ribbon-front" aria-hidden="true" />
             <span className="hero-brand-halo" aria-hidden="true" />
             <div className="hero-brand-logo-wrap">
               <img
@@ -336,27 +334,22 @@ const Index = () => {
           <span>Explore</span><ChevronDown className="h-4 w-4" />
         </button>
 
-        <div className="hero-quick-panel relative z-20 mx-auto -mt-28 w-[calc(100%-2rem)] max-w-6xl translate-y-16 overflow-hidden rounded-2xl border border-white/70 bg-card text-foreground shadow-[0_28px_70px_-34px_rgba(5,25,42,0.55)] sm:w-[calc(100%-3rem)] lg:grid lg:grid-cols-[0.72fr_1.55fr_auto] lg:items-stretch">
-          <div className="flex flex-col justify-center bg-secondary/65 p-6 sm:p-7">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Comece por aqui</span>
-            <p className="mt-2 font-serif text-xl font-semibold leading-snug">Entenda seu caso em poucos passos</p>
-          </div>
-          <div className="grid divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        <div className="hero-quick-panel relative z-20 mx-auto -mt-28 w-[calc(100%-2rem)] max-w-[1544px] translate-y-16 overflow-hidden rounded-2xl border border-white/70 bg-card text-foreground shadow-[0_28px_70px_-34px_rgba(5,25,42,0.55)] sm:w-[calc(100%-6rem)]">
+          <div className="grid divide-y divide-border md:grid-cols-3 md:divide-x md:divide-y-0">
             {[
-              { icon: FileText, step: "01", label: "Conte sua situação" },
-              { icon: Search, step: "02", label: "Receba uma análise" },
-              { icon: Shield, step: "03", label: "Veja os próximos passos" },
-            ].map(({ icon: Icon, step, label }) => (
-              <div key={step} className="flex items-center gap-3 p-5 sm:flex-col sm:items-start sm:justify-center sm:p-6">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary"><Icon className="h-4 w-4" /></span>
-                <div><span className="text-[10px] font-bold tracking-[0.16em] text-primary/60">ETAPA {step}</span><p className="mt-0.5 text-sm font-semibold text-foreground">{label}</p></div>
+              { icon: FileText, step: "01", label: "Conte sua situação", description: "Nos fale sobre o seu caso de forma simples e segura." },
+              { icon: Search, step: "02", label: "Receba uma análise", description: "Nossa equipe avalia seu direito e apresenta um parecer claro." },
+              { icon: Shield, step: "03", label: "Veja os próximos passos", description: "Você recebe orientações para seguir com tranquilidade." },
+            ].map(({ icon: Icon, step, label, description }) => (
+              <div key={step} className="hero-step-card flex items-center gap-4 p-5 sm:p-7 lg:gap-6 lg:px-10 lg:py-8">
+                <span className="hero-step-number">{step}</span>
+                <Icon className="h-7 w-7 shrink-0 text-primary lg:h-9 lg:w-9" />
+                <div>
+                  <p className="font-serif text-lg font-semibold leading-tight text-foreground lg:text-xl">{label}</p>
+                  <p className="mt-1 max-w-[240px] text-sm leading-snug text-muted-foreground">{description}</p>
+                </div>
               </div>
             ))}
-          </div>
-          <div className="flex items-center p-5 sm:p-6">
-            <button onClick={() => openFlow("hero_quick_panel")} className="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-button hover:bg-primary/92 lg:w-auto">
-              Iniciar agora <ChevronRight className="h-4 w-4" />
-            </button>
           </div>
         </div>
       </section>
